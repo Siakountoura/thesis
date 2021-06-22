@@ -38,7 +38,7 @@ include_once 'includes/dbh.inc.php';
     <div class=" sidebar-content">
             <ul class="links">
                 <li>
-                    <a href="http://">ΑΡΧΙΚΗ</a>
+                    <a href="landingpage.php">ΑΡΧΙΚΗ</a>
                 </li>
                 <li>
                     <a href="http://">ΧΡΗΣΤΕΣ</a>
@@ -50,7 +50,7 @@ include_once 'includes/dbh.inc.php';
                     <a href="http://">ΜΑΘΗΤΕΣ</a>
                 </li>
                 <li>
-                    <a href="http://">ΑΞΙΟΛΟΓΗΣΗ</a>
+                    <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </li>
             </ul>
         </div>
