@@ -45,7 +45,7 @@
                     <a href="http://">ΒΑΘΜΙΔΑ</a>
                 </li>
                 <li>
-                    <a href="http://">ΜΑΘΗΤΕΣ</a>
+                    <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
                 </li>
                 <li>
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>

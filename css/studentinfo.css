@@ -1,0 +1,50 @@
+.stdsearch {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 25px;
+}
+
+.stdnt {
+  width: 270px;
+  height: 35px;
+  font-weight: 400;
+  font-size: 13px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1.7px solid #cca0f5;
+  font-family: "Roboto Mono", monospace;
+}
+
+.stdnt::placeholder {
+  color: #cca0f5d0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.stdnt:focus::placeholder {
+  color: transparent;
+  outline: none;
+}
+
+.btnsearchstd {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+  height: 35px;
+  width: 100px;
+  margin: 3.8px;
+  color: #242424;
+  font-size: 13px;
+  background: #ffffff;
+  border: solid #cca0f5 2px;
+  text-decoration: none;
+  text-align: center;
+  transition-duration: 0.33s;
+  cursor: pointer;
+}
+
+.btnsearchstd:hover {
+  background: #cca0f5;
+  text-decoration: none;
+}

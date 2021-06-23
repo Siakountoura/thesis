@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style2.css">
     <link rel="stylesheet" href="css/gradedpaper.css">
-
+    <link rel="stylesheet" href="css/studentinfo.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&display=swap"
         rel="stylesheet">
@@ -73,12 +73,9 @@
 
         <div class="content">
 
-            <div class="testheader">
-                <p class="studentname">Όνομα Μαθητή:</p>
-                <p class="teachersname">Όνομα Βαθμολογητή:</p>
-                <p class="dateoftest">Ημερομηνία Αξιολόγησης:</p>
-                <p class="vathmida">Βαθμίδα:</p>
-                <p class="taksi">Τάξη:</p>
+            <div class="stdsearch">
+                <input type="text" name="" class="stdnt" placeholder="Όνομα Μαθητή">
+                <button class="btnsearchstd">Αναζήτηση</button>
             </div>
 
             <span class="tablecontainer">
@@ -192,12 +189,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="gradepaperbuttons">
-                    <button class="btndel">Επεξεργασία</button>
 
-                    <button class="btnedit">Διαγραφή</button>
-                    <button class="btnprint">Εκτύπωση</button>
-                </div>
             </span>
 
         </div>
