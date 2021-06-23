@@ -195,7 +195,12 @@ span {
   /*background-color: darkslategrey;*/
   display: flex;
   flex: 75%;
-  overflow: scroll;
+  overflow: overlay;
+}
+
+.col2::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
 }
 
 .col2 h3 {
@@ -264,7 +269,6 @@ tr td:nth-child(1) {
 
 select {
   font-family: "Roboto Mono", monospace;
-
   width: 150px;
   height: 37px;
   font-weight: 300;
@@ -276,11 +280,20 @@ select:hover {
   cursor: pointer;
 }
 
-input[type="text"] {
+.gradeinp1,
+.gradeinp2,
+.gradeinp3,
+.gradeinp4,
+.gradeinp5,
+.gradeinp6,
+.gradeinp7,
+.gradeinp8,
+.gradeinp9,
+.gradeinp10 {
   width: 70px;
   height: 29px;
   font-weight: 300;
-  font-size: 3px;
+  font-size: 13px;
   border: 1.5px solid #cca0f5;
   font-family: "Roboto Mono", monospace;
 }
@@ -288,12 +301,12 @@ input[type="text"] {
 .studentinp {
   display: flex;
   flex-direction: column;
-  margin-top: -10px;
-  margin-bottom: 15px;
+  margin-top: -7.1px;
+  margin-bottom: 8px;
   text-align: left;
   color: #cca0f5;
   font-weight: bold;
-  font-size: 14.5px;
+  font-size: 14px;
 }
 
 .nextrow {
@@ -301,7 +314,10 @@ input[type="text"] {
   justify-content: left;
 }
 
-.gradetitle {
+.gradetitle,
+.studname,
+.gymnasiolukeio,
+.taksi {
   width: 270px;
   height: 29px;
   font-weight: 400;
@@ -315,78 +331,28 @@ input[type="text"] {
 
 .studname {
   width: 250px;
-  height: 29px;
-  font-weight: 400;
-  font-size: 13px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1.7px solid #cca0f5;
   margin-right: 18px;
-  font-family: "Roboto Mono", monospace;
 }
 
-.gymnasiolukeio {
-  width: 150px;
-  height: 29px;
-  font-weight: 400;
-  font-size: 13px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1.7px solid #cca0f5;
-  margin-right: 18px;
-  font-family: "Roboto Mono", monospace;
-}
-
+.gymnasiolukeio,
 .taksi {
   width: 150px;
-  height: 29px;
-  font-weight: 400;
-  font-size: 13px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1.7px solid #cca0f5;
-  font-family: "Roboto Mono", monospace;
+  margin-right: 18px;
 }
 
-.gradetitle::placeholder {
-  color: #cca0f5d0;
-  font-size: 14px;
-}
-
-.studname::placeholder {
-  color: #cca0f5d0;
-  font-size: 14px;
-}
-
-.gymnasiolukeio::placeholder {
-  color: #cca0f5d0;
-  font-size: 14px;
-}
-
+.studname::placeholder,
+.gradetitle::placeholder,
+.gymnasiolukeio::placeholder,
 .taksi::placeholder {
   color: #cca0f5d0;
   font-size: 14px;
+  font-weight: bold;
 }
 
 /*no border when textbox is selected & autohide placeholder*/
-.gradetitle:focus::placeholder {
-  color: transparent;
-  outline: none;
-}
-
-.studname:focus::placeholder {
-  color: transparent;
-  outline: none;
-}
-
-.gymnasiolukeio:focus::placeholder {
-  color: transparent;
-  outline: none;
-}
-
+.gradetitle:focus::placeholder,
+.studname:focus::placeholder,
+.gymnasiolukeio:focus::placeholder,
 .taksi:focus::placeholder {
   color: transparent;
   outline: none;
@@ -396,24 +362,9 @@ input[type="text"] {
   outline: none;
 }
 
-.grade-4 {
-  font-weight: 300;
-  font-size: 13px;
-  word-wrap: break-word;
-  white-space: normal;
-}
-.grade-3 {
-  font-weight: 300;
-  font-size: 13px;
-  word-wrap: break-word;
-  white-space: normal;
-}
-.grade-2 {
-  font-weight: 300;
-  font-size: 13px;
-  word-wrap: break-word;
-  white-space: normal;
-}
+.grade-4,
+.grade-3,
+.grade-2,
 .grade-1 {
   font-weight: 300;
   font-size: 13px;
@@ -421,7 +372,7 @@ input[type="text"] {
   white-space: normal;
 }
 
-button {
+.gradesubmitbtn {
   font-family: "Roboto Mono", monospace;
   font-weight: 500;
   color: #242424;
@@ -434,7 +385,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.gradesubmitbtn:hover {
   background: #cca0f5;
   text-decoration: none;
 }

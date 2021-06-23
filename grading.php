@@ -141,7 +141,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 1 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" class="gradeinp1">
 
                                 </td>
                             </tr>
@@ -170,7 +170,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 2 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp2">
 
                                 </td>
                             </tr>
@@ -197,7 +197,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 3 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp3">
 
                                 </td>
                             </tr>
@@ -224,7 +224,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 4 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp4">
 
                                 </td>
                             </tr>
@@ -251,7 +251,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 5 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp5">
 
                                 </td>
                             </tr>
@@ -278,7 +278,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 6 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp6">
 
                                 </td>
                             </tr>
@@ -303,7 +303,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 7 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp7">
 
                                 </td>
                             </tr>
@@ -328,7 +328,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 8 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp8">
 
                                 </td>
                             </tr>
@@ -353,7 +353,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 9 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp8">
 
                                 </td>
                             </tr>
@@ -378,7 +378,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="grade-1">row 10 [cell 5]</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp9">
 
                                 </td>
                             </tr>
@@ -390,7 +390,7 @@ include_once 'includes/dbh.inc.php';
                                 <td class="finalgrade">Τελική <br> Βαθμολογία</td>
                                 <td>
 
-                                    <input type="text" name="" id="">
+                                    <input type="text" name="" id="" class="gradeinp10">
 
                                 </td>
                             </tr>
@@ -401,7 +401,8 @@ include_once 'includes/dbh.inc.php';
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <button id="gradesubmit" type="submit" form="form1" value="Submit">ΥΠΟΒΟΛΗ</button>
+                                    <button class="gradesubmitbtn" type="submit" form="form1"
+                                        value="Submit">ΥΠΟΒΟΛΗ</button>
                                 </td>
                             </tr>
 

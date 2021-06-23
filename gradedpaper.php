@@ -192,14 +192,14 @@
                         </tr>
                     </tbody>
                 </table>
-            </span>
-            <div class="gradepaperbuttons">
-                <button>Επεξεργασία</button>
+                <div class="gradepaperbuttons">
+                    <button class="btndel">Επεξεργασία</button>
 
-                <button>Διαγραφή</button>
-            </div>
+                    <button class="btnedit">Διαγραφή</button>
+                </div>
+            </span>
+
         </div>
-    </div>
 
 </body>
 
