@@ -196,6 +196,7 @@
                     <button class="btndel">Επεξεργασία</button>
 
                     <button class="btnedit">Διαγραφή</button>
+                    <button class="btnprint">Εκτύπωση</button>
                 </div>
             </span>
 
