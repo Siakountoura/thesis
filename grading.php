@@ -94,9 +94,14 @@ include_once 'includes/dbh.inc.php';
                     <h3>
                         Δημιουργία πίνακα αξιολόγησης
                     </h3>
-                    <p id="studentinp">
-                        Αξιολόγηση Μαθητή:
-                        <input type=" text" name="" id="studname">
+                    <p class="studentinp">
+                        <input type=" text" name="" class="gradetitle" placeholder="Τίτλος: ">
+                    <div class="nextrow">
+                        <input type=" text" name="" class="studname" placeholder="Όνομα Μαθητή: ">
+                        <input type=" text" name="" class="gymnasiolukeio" placeholder="Βαθμίδα: ">
+                        <input type=" text" name="" class="taksi" placeholder="Τάξη: ">
+                    </div>
+
                     </p>
                     <table>
                         <thead>

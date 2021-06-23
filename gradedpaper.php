@@ -77,6 +77,8 @@
                 <p class="studentname">Όνομα Μαθητή:</p>
                 <p class="teachersname">Όνομα Βαθμολογητή:</p>
                 <p class="dateoftest">Ημερομηνία Αξιολόγησης:</p>
+                <p class="vathmida">Βαθμίδα:</p>
+                <p class="taksi">Τάξη:</p>
             </div>
 
             <span class="tablecontainer">

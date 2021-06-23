@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style2.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&display=swap" rel="stylesheet">
 
 
     <title>Document</title>
@@ -36,7 +36,7 @@
         <div class=" sidebar-content">
             <ul class="links">
                 <li>
-                    <a href="landingpage.php">ΑΡΧΙΚΗ</a>
+                    <a href="landingpage.php"> ΑΡΧΙΚΗ</a>
                 </li>
                 <li>
                     <a href="http://">ΧΡΗΣΤΕΣ</a>
@@ -71,6 +71,7 @@
 
         <div class="content">
             <p> main content box</p>
+
             <a href="gradedpaper.php">Display test result page</a>
         </div>
     </div>
