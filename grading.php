@@ -414,10 +414,6 @@ include_once 'includes/dbh.inc.php';
     </div>
 
 </body>
-
-</html>
-
-
 <script>
 $(document).ready(function() {
     $("select[name='select_catg']").change(function() {
@@ -446,3 +442,5 @@ $(document).ready(function() {
     });
 });
 </script>
+
+</html>
