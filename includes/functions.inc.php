@@ -93,7 +93,7 @@ function loginUser($conn, $username, $pwd) {
         $_SESSION["userid"] = $uidExists["usersId"];
         $_SESSION["useruid"] = $uidExists["usersUid"];
 
-        header("location: ../landingpage.php");
+        header("location: ../grading.php");
         exit();
     }
 

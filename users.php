@@ -37,15 +37,15 @@ include_once 'includes/dbh.inc.php';
     <script>
     $(document).ready(function() {
 
-        const $select = $('#student-select');
+        const $select = $('#teacher-select');
         $select.select2({
-            placeholder: 'Αναζήτηση Μαθητή'
+            placeholder: 'Αναζήτηση Καθηγητή'
         });
 
 
-        $("#student-select").on("select2:select", function() {
+        $("#teacher-select").on("select2:select", function() {
 
-            var data = $('#student-select').select2('data')
+            var data = $('#teacher-select').select2('data')
             let studentName = data[0].text.trim().split("-")[0];
             let studentId = data[0].id;
 
@@ -180,7 +180,7 @@ include_once 'includes/dbh.inc.php';
     })
     </script>
 
-    <title>Μαθητές</title>
+    <title>Χρήστες</title>
 </head>
 
 <body>
@@ -236,21 +236,21 @@ include_once 'includes/dbh.inc.php';
         <section class="glass">
             <div class="content">
                 <div class="col1">
-                    <h3> Αναζήτηση Μαθητή </h3>
+                    <h3> Αναζήτηση Καθηγητή </h3>
                     <p>
-                        Με όνομα ή ΑΕΜ:
+                        Με όνομα ή username:
 
                         <br /><br />
-                        <select id="student-select">
+                        <select id="teacher-select">
                             <option></option>
                             <?php
-                                $select_query="SELECT * FROM students";
+                                $select_query="SELECT * FROM users";
                                 $select_result = mysqli_query($conn, $select_query);
                                 while($select_data=mysqli_fetch_assoc($select_result))
                                 {
                                 ?>
-                            <option value="<?php echo $select_data['id']; ?>">
-                                <?php echo $select_data['name'] . " " . $select_data['last_name'] . " | " . $select_data['am']; ?>
+                            <option value="<?php echo $select_data['usersId']; ?>">
+                                <?php echo $select_data['usersName'] . " | " . $select_data['usersUid']; ?>
                             </option>
                             <?php
                                 }
@@ -260,13 +260,13 @@ include_once 'includes/dbh.inc.php';
                         <br /><br />
 
                     <p>
-                        Στοιχεία Μαθητή
+                        Στοιχεία Καθηγητή
                     <ul class="student-info">
                         <li>Όνομα:</li>
                         <li>Επώνυμο:</li>
-                        <li>ΑΕΜ:</li>
+                        <li>Username:</li>
                         <br /><br />
-                        <li class="mo-student">Μ.Ο Μαθήματος:</li>
+                        <li class="mo-vthmologisis">Μ.Ο Βαθμολόγισης:</li>
                     </ul>
                     </p>
 
@@ -277,7 +277,7 @@ include_once 'includes/dbh.inc.php';
                 <span class="col2-2">
                     <div class="table-info2">
 
-                        <p class="title">Φύλλα Αξιολόγησης Μαθητή</p>
+                        <p class="title">Φύλλα Βαθμολόγισης Μαθητών</p>
 
                     </div>
                     <div class="table">
@@ -309,22 +309,32 @@ include_once 'includes/dbh.inc.php';
                                         <p class="headerid">#ID</p>
                                     </th>
                                     <th>Τίτλος</th>
-                                    <th>Βαθμολογία</th>
+                                    <th>ΑΕΜ Μαθητή</th>
+                                    <th>Καθηγητής</th>
+                                    <th>Τάξη</th>
+                                    <th>Βαθμίδα</th>
+                                    <th>Βαθμός</th>
                                     <th>Ημ/νία Δημ/γίας</th>
                                     <th>Ημ/νία Επ/σίας</th>
                                 </tr>
                             </thead>
                             <tbody id="ans" class="tbody">
                                 <tr>
-                                    <td> 2 </td>
+                                    <td>
 
-                                    <td> <a href="gradedpaper.php" class="gradedpaper">Τιτλος φυλλου
-                                            Αξιολόγησης</a>
+
+
                                     </td>
-                                    <td> 12/16 </td>
-                                    <td> 22/1/22 </td>
-                                    <td> - </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td>
 
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -336,7 +346,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -348,7 +365,13 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -360,7 +383,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -372,7 +402,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -384,7 +421,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -396,7 +440,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -407,7 +458,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -418,7 +476,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -429,26 +494,31 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"></td>
                                     <td class="grade-2"></td>
                                     <td class="grade-1"></td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
+
                                 <tr>
                                     <td class="hide"></td>
                                     <td class="hide"></td>
                                     <td class="hide"></td>
                                     <td class="hide"></td>
                                     <td class="finalgrade"> </td>
+                                    <td>
 
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td colspan="6">
 
                                     </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>

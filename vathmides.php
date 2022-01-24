@@ -30,157 +30,7 @@ include_once 'includes/dbh.inc.php';
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-
-
-
-
-    <script>
-    $(document).ready(function() {
-
-        const $select = $('#student-select');
-        $select.select2({
-            placeholder: 'Αναζήτηση Μαθητή'
-        });
-
-
-        $("#student-select").on("select2:select", function() {
-
-            var data = $('#student-select').select2('data')
-            let studentName = data[0].text.trim().split("-")[0];
-            let studentId = data[0].id;
-
-            $('#taksi option:selected').removeProp('selected');
-            $('#vathmida option:selected').removeProp('selected');
-
-
-            $.ajax({
-                    type: "GET",
-                    url: `student.php?studentId=${studentId}`,
-                    // cache: false,
-                    statusCode: {
-                        404: function(responseObject, textStatus, jqXHR) {
-                            // No content found (404)
-                            // This code will be executed if the server returns a 404 response
-                        },
-                        503: function(responseObject, textStatus, errorThrown) {
-                            // Service Unavailable (503)
-                            // This code will be executed if the server returns a 503 response
-                        },
-                        403: function(responseObject, textStatus, errorThrown) {
-                            // console.log("ltasi", textStatus)
-                            $.notify("Error", "danger");
-                        }
-                    }
-                })
-                .done(function(data) {
-                    console.log("student", data)
-
-                    $("#studname").val(`${data.name}`)
-                    $("#studlastname").val(`${data.last_name}`)
-                    $("#studname").data("studentid", studentId)
-
-                    $("#am").val(data.am)
-                    $(`#taksi option[value="${data.taksi}"]`).prop('selected', 'selected');
-
-                    $(`#vathmida option[value="${data.vathmida}"]`).prop('selected', 'selected');
-
-
-                })
-
-
-        });
-
-
-
-        $(".gradesubmitbtn").click(function() {
-
-            let criteriasList = [];
-
-            $('#criteriastable tbody tr').each(function(index) {
-                let criteriaTitle = $(this).find(`td:eq(0)`).children(":first")
-
-                let criteriaFour = $(this).find(`td:eq(1)`).text();
-                let criteriaThree = $(this).find(`td:eq(2)`).text();
-                let criteriaTwo = $(this).find(`td:eq(3)`).text();
-                let criteriaOne = $(this).find(`td:eq(4)`).text();
-                let vathmos = $(this).find(`td:eq(5)`).find('input').val();
-
-
-
-                if (criteriaTitle
-                    .val()) { //if is selected, then push to array the options
-                    criteriasList.push({
-                        "criteriaTitle": criteriaTitle.find(
-                                'option:selected')
-                            .text().trim(),
-                        "criteriaFour": criteriaFour,
-                        "criteriaThree": criteriaThree,
-                        "criteriaTwo": criteriaTwo,
-                        "criteriaOne": criteriaOne,
-                        "vathmos": vathmos
-                    })
-                }
-
-
-            });
-
-
-            let studentDetails = {
-                "id": $("#studname").data("studentid") == "" ? null : $("#studname").data(
-                    "studentid"),
-                "name": $("#studname").val(),
-                "lastname": $("#studlastname").val(),
-                "am": $("#AM").val(),
-                "vathmida": $("#vathmida").val(),
-                "taksi": $("#taksi").val()
-            }
-
-            let gradingDetails = {
-                "title": $("#gradetitle").val(),
-                "telikiVathmologia": $("#telikiVathmologia").val()
-            }
-
-            let postData = {
-                "grading": gradingDetails,
-                "criteria": criteriasList,
-                "student": studentDetails
-            }
-
-            console.log("postData: ", postData)
-
-            $.ajax({
-                    type: "POST",
-                    url: `gradingfnc.php`,
-                    contentType: "application/json",
-                    // cache: false,
-                    data: JSON.stringify(postData),
-                    statusCode: {
-                        404: function(responseObject, textStatus, jqXHR) {
-                            // No content found (404)
-                            // This code will be executed if the server returns a 404 response
-                        },
-                        503: function(responseObject, textStatus, errorThrown) {
-                            // Service Unavailable (503)
-                            // This code will be executed if the server returns a 503 response
-                        },
-                        403: function(responseObject, textStatus, errorThrown) {
-                            console.log("ltasi", textStatus)
-                        }
-                    }
-                })
-
-                .done(function(data) {
-                    console.log("student", data)
-                    $.notify("Alert!");
-
-                })
-
-        });
-
-    })
-    </script>
-
-    <title>Μαθητές</title>
+    <title>Βαθμίδες</title>
 </head>
 
 <body>
@@ -236,39 +86,49 @@ include_once 'includes/dbh.inc.php';
         <section class="glass">
             <div class="content">
                 <div class="col1">
-                    <h3> Αναζήτηση Μαθητή </h3>
+                    <h3> Στοιχεία Βαθμίδας ή Τάξης </h3>
                     <p>
-                        Με όνομα ή ΑΕΜ:
+                        Επιλογή Βαθμίδας
 
                         <br /><br />
-                        <select id="student-select">
-                            <option></option>
-                            <?php
-                                $select_query="SELECT * FROM students";
-                                $select_result = mysqli_query($conn, $select_query);
-                                while($select_data=mysqli_fetch_assoc($select_result))
-                                {
-                                ?>
-                            <option value="<?php echo $select_data['id']; ?>">
-                                <?php echo $select_data['name'] . " " . $select_data['last_name'] . " | " . $select_data['am']; ?>
-                            </option>
-                            <?php
-                                }
-                                ?>
+
+                        <select id="vathmida">
+                            <option selected hidden>Επιλογή Βαθμίδας</option>
+                            <option value="Γυμνάσιο">Γυμνάσιο</option>
+                            <option value="Λύκειο">Λύκειο</option>
                         </select>
 
                         <br /><br />
 
-                    <p>
-                        Στοιχεία Μαθητή
-                    <ul class="student-info">
-                        <li>Όνομα:</li>
-                        <li>Επώνυμο:</li>
-                        <li>ΑΕΜ:</li>
+                        Επιλογή Τάξης
+
                         <br /><br />
-                        <li class="mo-student">Μ.Ο Μαθήματος:</li>
-                    </ul>
-                    </p>
+
+                        <select id="taksi">
+                            <option selected hidden>Επιλογή Τάξης</option>
+                            <option value="Α1">Α1</option>
+                            <option value="Α2">Α2</option>
+                            <option value="Α3">Α3</option>
+                            <option value="Α3">Α4</option>
+                            <option value="Β1">Β1</option>
+                            <option value="Β2">Β2</option>
+                            <option value="Β3">Β3</option>
+                            <option value="Β4">Β4</option>
+                            <option value="Γ1">Γ1</option>
+                            <option value="Γ2">Γ2</option>
+                            <option value="Γ3">Γ3</option>
+                            <option value="Γ4">Γ4</option>
+                        </select>
+
+                        <br /><br />
+
+                        <button class="vathmidessubmitbtn" type="submit" form="vathmides" value="Submit">
+                            Υποβολή
+                        </button>
+
+                        <br /><br />
+
+                    <p class="mo-vathmidas"><b>Μ.Ο Τμήματος/Βαθμίδας:</b></p>
 
                     </p>
                 </div>
@@ -277,7 +137,7 @@ include_once 'includes/dbh.inc.php';
                 <span class="col2-2">
                     <div class="table-info2">
 
-                        <p class="title">Φύλλα Αξιολόγησης Μαθητή</p>
+                        <p class="title">Αξιολόγησεις</p>
 
                     </div>
                     <div class="table">
@@ -309,21 +169,32 @@ include_once 'includes/dbh.inc.php';
                                         <p class="headerid">#ID</p>
                                     </th>
                                     <th>Τίτλος</th>
-                                    <th>Βαθμολογία</th>
+                                    <th>Καθηγητής</th>
+                                    <th>ΑΕΜ Μαθητή</th>
+
+                                    <th>Τάξη</th>
+                                    <th>Βαθμίδα</th>
+                                    <th>Βαθμός</th>
                                     <th>Ημ/νία Δημ/γίας</th>
                                     <th>Ημ/νία Επ/σίας</th>
+
                                 </tr>
                             </thead>
                             <tbody id="ans" class="tbody">
                                 <tr>
-                                    <td> 2 </td>
+                                    <td>
 
-                                    <td> <a href="gradedpaper.php" class="gradedpaper">Τιτλος φυλλου
-                                            Αξιολόγησης</a>
+
+
                                     </td>
-                                    <td> 12/16 </td>
-                                    <td> 22/1/22 </td>
-                                    <td> - </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
 
                                 </tr>
                                 <tr>
@@ -336,7 +207,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -348,7 +226,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -360,7 +245,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -372,7 +264,13 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td> </td>
+                                    <td>
 
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -384,7 +282,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -396,7 +301,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
+                                    <td> </td>
+                                    <td>
 
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -407,18 +319,14 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"> </td>
                                     <td class="grade-2"> </td>
                                     <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
+                                    <td> </td>
                                     <td>
 
 
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
 
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -429,26 +337,52 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-3"></td>
                                     <td class="grade-2"></td>
                                     <td class="grade-1"></td>
+                                    <td>
 
-                                </tr>
-                                <tr>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="finalgrade"> </td>
 
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td colspan="6">
 
                                     </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                 </tr>
+                                <tr>
+                                    <td>
+
+
+                                    </td>
+                                    <td class="grade-4"></td>
+                                    <td class="grade-3"></td>
+                                    <td class="grade-2"></td>
+                                    <td class="grade-1"></td>
+                                    <td>
+
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+                                <tr>
+                                    <td>
+
+
+                                    </td>
+                                    <td class="grade-4"> </td>
+                                    <td class="grade-3"> </td>
+                                    <td class="grade-2"> </td>
+                                    <td class="grade-1"> </td>
+                                    <td> </td>
+                                    <td>
+
+
+
+                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>

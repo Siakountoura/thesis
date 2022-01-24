@@ -1,50 +1,120 @@
-.stdsearch {
+.table-info {
+  width: 97%;
+  height: 10%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 25px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-.stdnt {
-  width: 270px;
-  height: 35px;
-  font-weight: 400;
-  font-size: 13px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1.7px solid #cca0f5;
-  font-family: "Roboto Mono", monospace;
+.student-info{
+  text-align: left;
 }
 
-.stdnt::placeholder {
-  color: #cca0f5d0;
-  font-size: 14px;
+.student-info, .paper-info, .btn-list{
+  list-style: none;
+  overflow-wrap: break-word;
+  line-height: 28px;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.paper-info{
   font-weight: bold;
+  text-align: left;
 }
 
-.stdnt:focus::placeholder {
-  color: transparent;
-  outline: none;
+.mo-student, .mo-vathmidas, .mo-vthmologisis{
+  font-weight: bold;
+  border-bottom: 1px solid #c98897;
 }
 
-.btnsearchstd {
-  font-family: "Roboto Mono", monospace;
-  font-weight: 500;
+#taksi, #vathmida  {
+  font-weight: 300;
+  font-size: 0.9rem !important;
+  width: 180px;
+  background-color: transparent;
+  border-bottom: 1px solid #c98897;
+  padding-bottom: 0%;
+}
+
+.vathmidessubmitbtn, .printtbtn, 
+.deletebtn, .editbtn {
+    font-weight: 400;
+    color: #780061;
+    font-size: 13px;
+    text-align: left;
+    width: 120px;
+    margin-top: 3px;
+    height: 36px;
+    background: #ffffff;
+    padding: 8px 10px 8px 9px;
+    border: solid #c98897 1px;
+    border-radius: 2rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition-duration: 0.33s;
+    text-align: center;
+    cursor: pointer;
+    background: linear-gradient(to left, transparent, #c98897a2 50%) right;
+    background-size: 200%;
+    transition: 0.3s ease-out;
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+.vathmidessubmitbtn:hover, .printtbtn:hover, 
+.deletebtn:hover, .editbtn:hover {
+  text-decoration: none;
+  background-position: left;
+}
+
+.btn-list{
+  display: flex;
+  width: 50%;
+  padding-left: 250px;
+  padding-right: 250px;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
+
+.gradedpaper {
+  font-weight: bold;
+  color: #b37281;
+  border-bottom: 1px solid #c98897;
+}
+
+.col2-2{
+  height: 90%;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.table-info2 {
+  margin: 2px;
+  padding: 12px;
+  padding-left: 2%;
+  text-align: left;
+}
+
+.gradeinfotable{
+  height: 100%;
+  width: 97%;
+  padding-top: 30px;
+}
+
+.gradeinfotable td{
   height: 35px;
-  width: 100px;
-  margin: 3.8px;
-  color: #242424;
-  font-size: 13px;
-  background: #ffffff;
-  border: solid #cca0f5 2px;
-  text-decoration: none;
-  text-align: center;
-  transition-duration: 0.33s;
-  cursor: pointer;
 }
 
-.btnsearchstd:hover {
-  background: #cca0f5;
-  text-decoration: none;
+.headerid{
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
+
