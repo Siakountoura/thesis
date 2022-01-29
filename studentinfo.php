@@ -73,17 +73,12 @@ include_once 'includes/dbh.inc.php';
                     }
                 })
                 .done(function(data) {
-                    console.log("student", data)
+                    console.log("student", data);
 
-                    $("#studname").val(`${data.name}`)
-                    $("#studlastname").val(`${data.last_name}`)
-                    $("#studname").data("studentid", studentId)
+                    $("#studname").val(`${data.name}`);
+                    $("#studlastname").val(`${data.last_name}`);
 
-                    $("#am").val(data.am)
-                    $(`#taksi option[value="${data.taksi}"]`).prop('selected', 'selected');
-
-                    $(`#vathmida option[value="${data.vathmida}"]`).prop('selected', 'selected');
-
+                    $("#am").val(data.am);
 
                 })
 
@@ -92,90 +87,6 @@ include_once 'includes/dbh.inc.php';
 
 
 
-        $(".gradesubmitbtn").click(function() {
-
-            let criteriasList = [];
-
-            $('#criteriastable tbody tr').each(function(index) {
-                let criteriaTitle = $(this).find(`td:eq(0)`).children(":first")
-
-                let criteriaFour = $(this).find(`td:eq(1)`).text();
-                let criteriaThree = $(this).find(`td:eq(2)`).text();
-                let criteriaTwo = $(this).find(`td:eq(3)`).text();
-                let criteriaOne = $(this).find(`td:eq(4)`).text();
-                let vathmos = $(this).find(`td:eq(5)`).find('input').val();
-
-
-
-                if (criteriaTitle
-                    .val()) { //if is selected, then push to array the options
-                    criteriasList.push({
-                        "criteriaTitle": criteriaTitle.find(
-                                'option:selected')
-                            .text().trim(),
-                        "criteriaFour": criteriaFour,
-                        "criteriaThree": criteriaThree,
-                        "criteriaTwo": criteriaTwo,
-                        "criteriaOne": criteriaOne,
-                        "vathmos": vathmos
-                    })
-                }
-
-
-            });
-
-
-            let studentDetails = {
-                "id": $("#studname").data("studentid") == "" ? null : $("#studname").data(
-                    "studentid"),
-                "name": $("#studname").val(),
-                "lastname": $("#studlastname").val(),
-                "am": $("#AM").val(),
-                "vathmida": $("#vathmida").val(),
-                "taksi": $("#taksi").val()
-            }
-
-            let gradingDetails = {
-                "title": $("#gradetitle").val(),
-                "telikiVathmologia": $("#telikiVathmologia").val()
-            }
-
-            let postData = {
-                "grading": gradingDetails,
-                "criteria": criteriasList,
-                "student": studentDetails
-            }
-
-            console.log("postData: ", postData)
-
-            $.ajax({
-                    type: "POST",
-                    url: `gradingfnc.php`,
-                    contentType: "application/json",
-                    // cache: false,
-                    data: JSON.stringify(postData),
-                    statusCode: {
-                        404: function(responseObject, textStatus, jqXHR) {
-                            // No content found (404)
-                            // This code will be executed if the server returns a 404 response
-                        },
-                        503: function(responseObject, textStatus, errorThrown) {
-                            // Service Unavailable (503)
-                            // This code will be executed if the server returns a 503 response
-                        },
-                        403: function(responseObject, textStatus, errorThrown) {
-                            console.log("ltasi", textStatus)
-                        }
-                    }
-                })
-
-                .done(function(data) {
-                    console.log("student", data)
-                    $.notify("Alert!");
-
-                })
-
-        });
 
     })
     </script>
@@ -215,10 +126,6 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-home-25 (1).png" />
-                    <a href="landingpage.php"> ΑΡΧΙΚΗ</a>
-                </div>
             </div>
 
             <div class="footer">
@@ -236,49 +143,60 @@ include_once 'includes/dbh.inc.php';
         <section class="glass">
             <div class="content">
                 <div class="col1">
-                    <h3> Αναζήτηση Μαθητή </h3>
-                    <p>
-                        Με όνομα ή ΑΕΜ:
 
-                        <br /><br />
-                        <select id="student-select">
-                            <option></option>
-                            <?php
+                    <div class="headercol1">
+                        <h3> Αναζήτηση Μαθητή </h3>
+                    </div>
+
+                    <div class="contentcol2">
+                        <p>
+                            Με όνομα ή ΑΕΜ:
+
+                            <br /><br />
+                            <select id="student-select">
+                                <option></option>
+                                <?php
                                 $select_query="SELECT * FROM students";
                                 $select_result = mysqli_query($conn, $select_query);
                                 while($select_data=mysqli_fetch_assoc($select_result))
                                 {
                                 ?>
-                            <option value="<?php echo $select_data['id']; ?>">
-                                <?php echo $select_data['name'] . " " . $select_data['last_name'] . " | " . $select_data['am']; ?>
-                            </option>
-                            <?php
+                                <option value="<?php echo $select_data['id']; ?>">
+                                    <?php echo $select_data['name'] . " " . $select_data['last_name'] . " | " . $select_data['am']; ?>
+                                </option>
+                                <?php
                                 }
                                 ?>
-                        </select>
+                            </select>
 
-                        <br /><br />
+                            <br /><br />
+                        </p>
+                        <p>
+                            Στοιχεία Μαθητή
 
-                    <p>
-                        Στοιχεία Μαθητή
-                    <ul class="student-info">
-                        <li>Όνομα:</li>
-                        <li>Επώνυμο:</li>
-                        <li>ΑΕΜ:</li>
-                        <br /><br />
-                        <li class="mo-student">Μ.Ο Μαθήματος:</li>
-                    </ul>
-                    </p>
+                        <ul class="student-info">
+                            <li id="studname">Όνομα:</li>
+                            <li id="studlastname">Επώνυμο:</li>
+                            <li id="am">ΑΕΜ:</li>
+                            <br /><br />
 
-                    </p>
+                        </ul>
+
+                    </div>
+                    <div class="footercol1">
+                        <p class="mo-student">Μ.Ο Μαθήματος:</p>
+
+
+                    </div>
                 </div>
 
 
-                <span class="col2-2">
+                <span class="col2">
                     <div class="table-info2">
 
-                        <p class="title">Φύλλα Αξιολόγησης Μαθητή</p>
-
+                        <div class="tableinfoheader">
+                            <h3>Φύλλα Αξιολόγησης Μαθητή</h3>
+                        </div>
                     </div>
                     <div class="table">
 

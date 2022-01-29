@@ -65,10 +65,7 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-home-25 (1).png" />
-                    <a href="landingpage.php"> ΑΡΧΙΚΗ</a>
-                </div>
+
             </div>
 
             <div class="footer">
@@ -86,60 +83,72 @@ include_once 'includes/dbh.inc.php';
         <section class="glass">
             <div class="content">
                 <div class="col1">
-                    <h3> Στοιχεία Βαθμίδας ή Τάξης </h3>
-                    <p>
-                        Επιλογή Βαθμίδας
 
-                        <br /><br />
+                    <div class="headercol1">
+                        <h3> Στοιχεία Βαθμίδας <br> ή Τάξης </h3>
+                    </div>
 
-                        <select id="vathmida">
-                            <option selected hidden>Επιλογή Βαθμίδας</option>
-                            <option value="Γυμνάσιο">Γυμνάσιο</option>
-                            <option value="Λύκειο">Λύκειο</option>
-                        </select>
+                    <div class="contentcol2">
+                        <p>
 
-                        <br /><br />
 
-                        Επιλογή Τάξης
+                            Επιλογή Βαθμίδας
 
-                        <br /><br />
+                            <br /><br />
 
-                        <select id="taksi">
-                            <option selected hidden>Επιλογή Τάξης</option>
-                            <option value="Α1">Α1</option>
-                            <option value="Α2">Α2</option>
-                            <option value="Α3">Α3</option>
-                            <option value="Α3">Α4</option>
-                            <option value="Β1">Β1</option>
-                            <option value="Β2">Β2</option>
-                            <option value="Β3">Β3</option>
-                            <option value="Β4">Β4</option>
-                            <option value="Γ1">Γ1</option>
-                            <option value="Γ2">Γ2</option>
-                            <option value="Γ3">Γ3</option>
-                            <option value="Γ4">Γ4</option>
-                        </select>
+                            <select id="vathmida">
+                                <option selected hidden>Επιλογή Βαθμίδας</option>
+                                <option value="Γυμνάσιο">Γυμνάσιο</option>
+                                <option value="Λύκειο">Λύκειο</option>
+                            </select>
 
-                        <br /><br />
+                            <br /><br />
 
-                        <button class="vathmidessubmitbtn" type="submit" form="vathmides" value="Submit">
-                            Υποβολή
-                        </button>
+                            Επιλογή Τάξης
 
-                        <br /><br />
+                            <br /><br />
 
-                    <p class="mo-vathmidas"><b>Μ.Ο Τμήματος/Βαθμίδας:</b></p>
+                            <select id="taksi">
+                                <option selected hidden>Επιλογή Τάξης</option>
+                                <option value="Α1">Α1</option>
+                                <option value="Α2">Α2</option>
+                                <option value="Α3">Α3</option>
+                                <option value="Α3">Α4</option>
+                                <option value="Β1">Β1</option>
+                                <option value="Β2">Β2</option>
+                                <option value="Β3">Β3</option>
+                                <option value="Β4">Β4</option>
+                                <option value="Γ1">Γ1</option>
+                                <option value="Γ2">Γ2</option>
+                                <option value="Γ3">Γ3</option>
+                                <option value="Γ4">Γ4</option>
+                            </select>
 
-                    </p>
+                            <br /><br />
+
+                            <button class="vathmidessubmitbtn" type="submit" form="vathmides" value="Submit">
+                                Υποβολή
+                            </button>
+
+                        </p>
+
+                    </div>
+                    <div class="footercol1">
+                        <p class="mo-vathmidas">Μ.Ο Τμήματος/Βαθμίδας:</p>
+
+
+                    </div>
                 </div>
 
 
-                <span class="col2-2">
+                <span class="col2">
                     <div class="table-info2">
 
-                        <p class="title">Αξιολόγησεις</p>
-
+                        <div class="tableinfoheader">
+                            <h3>Αξιολόγησεις</h3>
+                        </div>
                     </div>
+
                     <div class="table">
 
                         <?php 

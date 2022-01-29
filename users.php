@@ -215,10 +215,6 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-home-25 (1).png" />
-                    <a href="landingpage.php"> ΑΡΧΙΚΗ</a>
-                </div>
             </div>
 
             <div class="footer">
@@ -236,49 +232,60 @@ include_once 'includes/dbh.inc.php';
         <section class="glass">
             <div class="content">
                 <div class="col1">
-                    <h3> Αναζήτηση Καθηγητή </h3>
-                    <p>
-                        Με όνομα ή username:
 
-                        <br /><br />
-                        <select id="teacher-select">
-                            <option></option>
-                            <?php
-                                $select_query="SELECT * FROM users";
-                                $select_result = mysqli_query($conn, $select_query);
-                                while($select_data=mysqli_fetch_assoc($select_result))
-                                {
-                                ?>
-                            <option value="<?php echo $select_data['usersId']; ?>">
-                                <?php echo $select_data['usersName'] . " | " . $select_data['usersUid']; ?>
-                            </option>
-                            <?php
-                                }
-                                ?>
-                        </select>
+                    <div class="headercol1">
+                        <h3> Αναζήτηση Καθηγητή </h3>
+                    </div>
 
-                        <br /><br />
+                    <div class="contentcol2">
+                        <p>
+                            Με όνομα ή username:
 
-                    <p>
-                        Στοιχεία Καθηγητή
-                    <ul class="student-info">
-                        <li>Όνομα:</li>
-                        <li>Επώνυμο:</li>
-                        <li>Username:</li>
-                        <br /><br />
-                        <li class="mo-vthmologisis">Μ.Ο Βαθμολόγισης:</li>
-                    </ul>
-                    </p>
+                            <br /><br />
+                            <select id="teacher-select">
+                                <option></option>
+                                <?php
+                                        $select_query="SELECT * FROM users";
+                                        $select_result = mysqli_query($conn, $select_query);
+                                        while($select_data=mysqli_fetch_assoc($select_result))
+                                        {
+                                        ?>
+                                <option value="<?php echo $select_data['usersId']; ?>">
+                                    <?php echo $select_data['usersName'] . " | " . $select_data['usersUid']; ?>
+                                </option>
+                                <?php
+                                        }
+                                        ?>
+                            </select>
 
-                    </p>
+                            <br /><br />
+
+                        <p>
+                            Στοιχεία Καθηγητή
+                        <ul class="student-info">
+                            <li>Όνομα:</li>
+                            <li>Επώνυμο:</li>
+                            <li>Username:</li>
+                        </ul>
+                        </p>
+
+                        </p>
+
+                    </div>
+                    <div class="footercol1">
+                        <p class="mo-vthmologisis">Μ.Ο Βαθμολόγισης:</p>
+
+
+                    </div>
                 </div>
 
 
-                <span class="col2-2">
+                <span class="col2">
                     <div class="table-info2">
 
-                        <p class="title">Φύλλα Βαθμολόγισης Μαθητών</p>
-
+                        <div class="tableinfoheader">
+                            <h3>Φύλλα Βαθμολόγισης Μαθητών</h3>
+                        </div>
                     </div>
                     <div class="table">
 
