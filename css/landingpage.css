@@ -80,8 +80,8 @@ main {
 
 .content {
   width: 100%;
-  height: 100%;
-  overflow: overlay;
+  
+  /*overflow: overlay;*/
 }
 
 .content::-webkit-scrollbar {

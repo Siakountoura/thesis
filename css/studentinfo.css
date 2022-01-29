@@ -69,15 +69,27 @@
   background-position: left;
 }
 
+.buttons{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
 .btn-list{
   display: flex;
-  width: 50%;
-  padding-left: 250px;
-  padding-right: 250px;
-  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
   align-items: center;
+  justify-content: center;
   
 }
+
+.btn-list > li {
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  
+}
+
 
 .gradedpaper {
   font-weight: bold;
@@ -96,15 +108,27 @@
 }
 
 .table-info2 {
-  margin: 2px;
-  padding: 12px;
-  padding-left: 2%;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  width: 97%;
+  height: 4%;
+  
+  padding-top: 2%;
+  align-items: flex-start;
+  padding-left: 0.9%;
+  justify-content: space-between;
+  line-height: 35px;
+}
+
+.table-info2 h3 {
+  
+  font-weight: 400;
+  font-size: 1.2rem;
 }
 
 .gradeinfotable{
-  height: 100%;
-  width: 97%;
+  height: 75%;
+  width: 99%;
   padding-top: 30px;
 }
 
