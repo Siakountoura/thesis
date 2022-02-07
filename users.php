@@ -2,6 +2,11 @@
 session_start();
 include_once 'includes/dbh.inc.php';
 
+if (!isset($_SESSION["useruid"])) { 
+    http_response_code(403);
+    header("Location: ./index.php");
+    die();
+}
 
 ?>
 
@@ -49,8 +54,6 @@ include_once 'includes/dbh.inc.php';
             let studentName = data[0].text.trim().split("-")[0];
             let studentId = data[0].id;
 
-            $('#taksi option:selected').removeProp('selected');
-            $('#vathmida option:selected').removeProp('selected');
 
 
             $.ajax({
@@ -67,115 +70,22 @@ include_once 'includes/dbh.inc.php';
                             // This code will be executed if the server returns a 503 response
                         },
                         403: function(responseObject, textStatus, errorThrown) {
-                            // console.log("ltasi", textStatus)
-                            $.notify("Error", "danger");
+
                         }
                     }
                 })
                 .done(function(data) {
                     console.log("student", data)
 
-                    $("#studname").val(`${data.name}`)
-                    $("#studlastname").val(`${data.last_name}`)
-                    $("#studname").data("studentid", studentId)
-
-                    $("#am").val(data.am)
-                    $(`#taksi option[value="${data.taksi}"]`).prop('selected', 'selected');
-
-                    $(`#vathmida option[value="${data.vathmida}"]`).prop('selected', 'selected');
-
+                    $("#teachersname").text(`${data.usersName}`)
+                    $("#teachersLastname").text(`${data.last_name}`)
+                    $("#teachersUsername").text("studentid", studentId)
 
                 })
 
 
         });
 
-
-
-        $(".gradesubmitbtn").click(function() {
-
-            let criteriasList = [];
-
-            $('#criteriastable tbody tr').each(function(index) {
-                let criteriaTitle = $(this).find(`td:eq(0)`).children(":first")
-
-                let criteriaFour = $(this).find(`td:eq(1)`).text();
-                let criteriaThree = $(this).find(`td:eq(2)`).text();
-                let criteriaTwo = $(this).find(`td:eq(3)`).text();
-                let criteriaOne = $(this).find(`td:eq(4)`).text();
-                let vathmos = $(this).find(`td:eq(5)`).find('input').val();
-
-
-
-                if (criteriaTitle
-                    .val()) { //if is selected, then push to array the options
-                    criteriasList.push({
-                        "criteriaTitle": criteriaTitle.find(
-                                'option:selected')
-                            .text().trim(),
-                        "criteriaFour": criteriaFour,
-                        "criteriaThree": criteriaThree,
-                        "criteriaTwo": criteriaTwo,
-                        "criteriaOne": criteriaOne,
-                        "vathmos": vathmos
-                    })
-                }
-
-
-            });
-
-
-            let studentDetails = {
-                "id": $("#studname").data("studentid") == "" ? null : $("#studname").data(
-                    "studentid"),
-                "name": $("#studname").val(),
-                "lastname": $("#studlastname").val(),
-                "am": $("#AM").val(),
-                "vathmida": $("#vathmida").val(),
-                "taksi": $("#taksi").val()
-            }
-
-            let gradingDetails = {
-                "title": $("#gradetitle").val(),
-                "telikiVathmologia": $("#telikiVathmologia").val()
-            }
-
-            let postData = {
-                "grading": gradingDetails,
-                "criteria": criteriasList,
-                "student": studentDetails
-            }
-
-            console.log("postData: ", postData)
-
-            $.ajax({
-                    type: "POST",
-                    url: `gradingfnc.php`,
-                    contentType: "application/json",
-                    // cache: false,
-                    data: JSON.stringify(postData),
-                    statusCode: {
-                        404: function(responseObject, textStatus, jqXHR) {
-                            // No content found (404)
-                            // This code will be executed if the server returns a 404 response
-                        },
-                        503: function(responseObject, textStatus, errorThrown) {
-                            // Service Unavailable (503)
-                            // This code will be executed if the server returns a 503 response
-                        },
-                        403: function(responseObject, textStatus, errorThrown) {
-                            console.log("ltasi", textStatus)
-                        }
-                    }
-                })
-
-                .done(function(data) {
-                    console.log("student", data)
-                    $.notify("Alert!");
-
-                })
-
-        });
 
     })
     </script>
@@ -215,6 +125,10 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
+                <div class="links">
+                    <img src="icons/icons8-home-25 (1).png" />
+                    <a href="landingpage.php"> ΑΡΧΙΚΗ</a>
+                </div>
             </div>
 
             <div class="footer">
@@ -239,6 +153,7 @@ include_once 'includes/dbh.inc.php';
 
                     <div class="contentcol2">
                         <p>
+
                             Με όνομα ή username:
 
                             <br /><br />
@@ -261,11 +176,13 @@ include_once 'includes/dbh.inc.php';
                             <br /><br />
 
                         <p>
+                            <br />
                             Στοιχεία Καθηγητή
+                            <br />
                         <ul class="student-info">
-                            <li>Όνομα:</li>
-                            <li>Επώνυμο:</li>
-                            <li>Username:</li>
+                            <li>Όνομα: <span id="teachersname"></li>
+                            <li>Επώνυμο: <span id="teachersLastname"></li>
+                            <li>Username: <span id="teachersUsername"></li>
                         </ul>
                         </p>
 

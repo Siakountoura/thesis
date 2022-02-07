@@ -2,6 +2,11 @@
 session_start();
 include_once 'includes/dbh.inc.php';
 
+if (!isset($_SESSION["useruid"])) { 
+    http_response_code(403);
+    header("Location: ./index.php");
+    die();
+}
 
 ?>
 
@@ -67,7 +72,7 @@ include_once 'includes/dbh.inc.php';
                         },
                         403: function(responseObject, textStatus, errorThrown) {
                             // console.log("ltasi", textStatus)
-                            $.notify("Error", "danger");
+                            //  $.notify("Error", "danger");
                         }
                     }
                 })
@@ -78,7 +83,7 @@ include_once 'includes/dbh.inc.php';
                     $("#studlastname").val(`${data.last_name}`)
                     $("#studname").data("studentid", studentId)
 
-                    $("#am").val(data.am)
+                    $("#AM").val(data.am)
                     $(`#taksi option[value="${data.taksi}"]`).prop('selected', 'selected');
 
                     $(`#vathmida option[value="${data.vathmida}"]`).prop('selected', 'selected');
@@ -170,7 +175,8 @@ include_once 'includes/dbh.inc.php';
 
                 .done(function(data) {
                     console.log("student", data)
-                    $.notify("Alert!");
+                    $.notify(" Τα στοιχεία καταχωρήθηκαν επιτυχώς!", "success");
+
 
                 })
 
@@ -204,10 +210,7 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-conference-25 (1).png" />
-                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
-                </div>
+
                 <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
@@ -216,6 +219,7 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
+
             </div>
 
             <div class="footer">

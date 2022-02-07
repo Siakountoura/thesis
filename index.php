@@ -1,51 +1,55 @@
 <!DOCTYPE html>
+
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
-    <title>Grading System</title>
-    <link rel="stylesheet" <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&display=swap"
-        rel="stylesheet" />
+    <title></title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
 
-    <div class="center">
+    <section>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="box">
+            <div class="square" style="--i:0;"></div>
+            <div class="square" style="--i:1"></div>
+            <div class="square" style="--i:2"></div>
+            <div class="square" style="--i:3"></div>
+            <div class="square" style="--i:4"></div>
+            <div class="container">
+                <div class="form">
+                    <h2>Φόρμα Εισόδου</h2>
+                    <form action="includes/login.inc.php" method="post">
 
-        <h1>Είσοδος</h1>
+                        <div class="inputBox" class="txt_field">
+                            <input type="text" placeholder="Όνομα Χρήστη" name="uid" required>
+                        </div>
+                        <div class="inputBox" class="txt_field">
+                            <input type="password" placeholder="Κωδικός" name="pwd" required>
+                        </div>
 
-        <form action="includes/login.inc.php" method="post">
+                        <div class="inputBox">
+                            <input type="submit" name="submit" value="Σύνδεση">
+                        </div>
 
-            <div class="txt_field">
-                <input type="text" name="uid" required>
-                <span></span>
-                <label>Όνομα Χρήστη</label>
+                        <p class="forget1" class="signup_link"><a href="signup.php">Εγγραφή</a></p>
+
+                        <?php
+                                if (isset($_GET["error"])){
+                                    if ($_GET["error"] == "wronglogin") {
+                                        echo "<p class='errormsg'>Τα στοιχεία που εισάγατε είναι λανθασμένα!</p>";
+                                    }
+                                }
+                            ?>
+                    </form>
+                </div>
             </div>
-
-            <div class="txt_field">
-                <input type="password" name="pwd" required>
-                <span></span>
-                <label>Κωδικός</label>
-            </div>
-
-            <input type="submit" name="submit" value="Σύνδεση">
-
-            <div class="signup_link">
-                <a href="signup.php">Εγγραφή</a>
-            </div>
-
-            <?php
-            if (isset($_GET["error"])){
-              if ($_GET["error"] == "wronglogin") {
-                  echo "<p>Τα στοιχεία που εισάγατε είναι λανθασμένα!</p>";
-              }
-            }
-          ?>
-
-        </form>
-    </div>
+        </div>
+        <section>
 
 </body>
 

@@ -2,6 +2,19 @@
 session_start();
 include_once 'includes/dbh.inc.php';
 
+$id = isset($_GET['gradingId']) ? (int) $_GET['gradingId'] : null;
+
+
+if (!isset($_SESSION["useruid"])) { 
+    http_response_code(403);
+    header("Location: ./index.php");
+    die();
+}
+
+if ($id===NULL){
+    header("Location: ./studentinfo.php");
+    die();
+}
 
 ?>
 
@@ -31,6 +44,50 @@ include_once 'includes/dbh.inc.php';
 
 
     <title>Eπεξεργασία Αξιολόγησης</title>
+
+    <script>
+    $(document).ready(function() {
+        $("select[name='select_catg']").change(function() {
+            let currentselect = $(this);
+            $.ajax({
+
+                url: 'includes/getgrade.php',
+                type: 'GET',
+                data: {
+                    'getgrade': $(this).val()
+                },
+                success: function(data) {
+                    var grade = JSON.parse(data);
+
+
+                    currentselect.closest('tr').find('.grade-4').html(grade[0][2]);
+                    currentselect.closest('tr').find('.grade-3').html(grade[0][3]);
+                    currentselect.closest('tr').find('.grade-2').html(grade[0][4]);
+                    currentselect.closest('tr').find('.grade-1').html(grade[0][5]);
+
+                },
+                error: function(request, error) {
+
+                }
+            });
+        });
+
+        $("#editbtn").click(function() {
+
+            // Disable #x
+            $(".select_catg").prop("disabled", false);
+
+            // Enable #x
+            $(".gradeinp1").prop("disabled", false);
+
+            // Enable #x
+            $("#telikiVathmologia").prop("disabled", false);
+        });
+
+    });
+    </script>
+
+
 </head>
 
 <body>
@@ -53,10 +110,7 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-conference-25 (1).png" />
-                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
-                </div>
+
                 <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
@@ -65,6 +119,7 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
+
             </div>
 
             <div class="footer">
@@ -89,13 +144,45 @@ include_once 'includes/dbh.inc.php';
 
                     <div class="contentcol2">
                         <p>
+
                         <ul class="paper-info">
-                            <li>Τίτλος:</li>
-                            <li>Ημερομηνία Αξιολόγησης:</li>
-                            <li>Όνομα Βαθμολογητή:</li>
-                            <li>Όνομα Μαθητή:</li>
-                            <li>Βαθμίδα:</li>
-                            <li>Τάξη:</li>
+
+
+                            <?php
+
+                                    $id = isset($_GET['gradingId']) ? (int) $_GET['gradingId'] : null;
+                                    $sql ="select u.usersName, g.titlos, g.creation_date, s.name, s.last_name, s.vathmida, s.taksi, s.am from grading g join students s on g.student_id = s.id join users u on u.usersId = g.teacher_id where g.id=?";
+
+
+                                    if($stmt=$conn->prepare($sql)){ 
+
+                                        $stmt->bind_param("i" , $id); 
+                                        $stmt->execute();
+                                        $result = $stmt->get_result(); // get the mysqli result
+                                        
+                                        while($gradingDetails = mysqli_fetch_assoc($result)){
+                                            
+                                            $creationDate=date_create($gradingDetails['creation_date']);
+                                            
+                                            echo "<li><b>Τίτλος: </b><br>".$gradingDetails['titlos']."</li>";
+                                            echo "<li><b>Ημερομηνία Αξιολόγησης: </b><br>".date_format($creationDate,"d/m/Y")."</li>";
+                                            echo "<li><b>Όνομα Βαθμολογητή: </b><br>".$gradingDetails['usersName']."</li>";
+                                            echo "<li><b>Επώνυμο Μαθητή: </b><br>".$gradingDetails['last_name']."</li>";
+                                            echo "<li><b>Όνομα Μαθητή: </b><br>".$gradingDetails['name']."</li>";
+                                            echo "<li><b>Βαθμίδα: </b><br>".$gradingDetails['vathmida']."</li>";
+                                            echo "<li><b>Τάξη: </b><br>".$gradingDetails['taksi']."</li>";
+                                            echo "<li><b>ΑΕΜ: </b><br>".$gradingDetails['am']."</li>";
+
+                                        }
+
+                                        
+                                    }
+
+                                 ?>
+
+
+
+
                         </ul>
 
                         </p>
@@ -117,22 +204,21 @@ include_once 'includes/dbh.inc.php';
                     </div>
                     <div class="table" id="table">
 
+
                         <?php 
 
-                                $category = "SELECT id,category FROM selections;";
+                            $id = isset($_GET['gradingId']) ? (int) $_GET['gradingId'] : null;
+                            $sql ="select * from criteria cr join grading gr on cr.grading_id = gr.id where gr.id =?";
+                            
+                            
+                            if($stmt=$conn->prepare($sql)){ 
 
+                                $stmt->bind_param("i" , $id); 
+                                $stmt->execute();
+                                $result = $stmt->get_result(); // get the mysqli result
 
-                                $res1 = mysqli_query($conn, $category);
-
-                                $res2 = mysqli_query($conn, $category);
-                                $res3 = mysqli_query($conn, $category);
-                                $res4 = mysqli_query($conn, $category);
-                                $res5 = mysqli_query($conn, $category);
-                                $res6 = mysqli_query($conn, $category);
-                                $res7 = mysqli_query($conn, $category);
-                                $res8 = mysqli_query($conn, $category);
-                                $res9 = mysqli_query($conn, $category);
-                                $res10 = mysqli_query($conn, $category);
+                            }
+                                
 
                             ?>
 
@@ -149,299 +235,90 @@ include_once 'includes/dbh.inc.php';
                                 </tr>
                             </thead>
                             <tbody id="ans" class="tbody">
-                                <tr>
-                                    <td>
 
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
+                                <?php
 
-                                                while ($rows = mysqli_fetch_array($res1)) {
-                                                    ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
+                                    $category = "SELECT id,category FROM selections;";                                 
+
+                                $telikosVathmos = 0;
+
+                                while($criteriaRows = mysqli_fetch_assoc($result)){
+
+                                    $telikosVathmos+=(int)$criteriaRows['vathmos'];
+
+                                    $res1 = mysqli_query($conn, $category);
+
+                                    echo "<tr>";
+                                    echo "<td>";
+                                    echo "<select name='select_catg' id='select_catg' class='select_catg' disabled>";
+
+                                    while ($rows = mysqli_fetch_array($res1)) {
+
+                                        echo "<option value=\"".$rows['id']."\">";
+                                        echo $rows['category']."</option>";
+
+                                        if($criteriaRows['criteria_title'] == $rows['category']){
+                                            
+                                            echo "<option selected value=\"".$rows['id']."\">";
+                                            echo $rows['category']."</option>";
+
+                                            }
+                                            else{
+                                            
+                                             echo "<option value=\"".$rows['id']."\">";
+                                             echo $rows['category']."</option>";
                                         }
-                                        ?>
-                                        </select>
 
-                                    </td>
-                                    <td class="grade-4">row 1 [cell 2]</td>
-                                    <td class="grade-3">row 1 [cell 3]</td>
-                                    <td class="grade-2">row 1 [cell 4]</td>
-                                    <td class="grade-1">row 1 [cell 5]</td>
-                                    <td>
-                                        <input type="number" min="1" max="4" class="gradeinp1" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                    }
 
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                                while ($rows = mysqli_fetch_array($res2)) {
-                                                    ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
+                                    echo "</select>";
+                                    echo "</td>";
+                                    echo "<td  class='grade-4'>";
+                                    echo $criteriaRows['criteria4'];
+                                    echo "</td>";
+                                    echo "<td  class='grade-3'>";
+                                    echo $criteriaRows['criteria3'];
+                                    echo "</td>";
+                                    echo "<td  class='grade-2'>";
+                                    echo $criteriaRows['criteria2'];
+                                    echo "</td>";
+                                    echo "<td  class='grade-1'>";
+                                    echo $criteriaRows['criteria1'];
+                                    echo "</td>";
+                                    echo "<td>";
+                                    echo "<input type='number' value='".$criteriaRows['vathmos']."' min='1' max='4' class='gradeinp1' disabled>";
+                                    
+                                    echo "</td>";
 
-                                    </td>
-                                    <td class="grade-4">row 2 [cell 2]</td>
-                                    <td class="grade-3">row 2 [cell 3]</td>
-                                    <td class="grade-2">row 2 [cell 4]</td>
-                                    <td class="grade-1">row 2 [cell 5]</td>
-                                    <td>
+                                    echo "</tr>";
 
-                                        <input type="number" min="1" max="4" class="gradeinp2" />
+                                }
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
+                                    echo "<tr>";
+                                    echo "<td class='hide'>";
+                                    echo "</td>";
+                                    echo "<td class='hide'>";
+                                    echo "</td>";
+                                    echo "<td class='hide'>";
+                                    echo "</td>";
+                                    echo "<td class='hide'>";
+                                    echo "</td>";
+                                    echo "<td class='finalgrade'>";
+                                    echo "</td>";
+                                    echo "<td>";
+                                    echo "<input id='telikiVathmologia' type='number' value='".$telikosVathmos."' min='1' max='4' class='gradeinp11' disabled>";
+                                    echo "</td>";
+                                    echo "</tr>";
 
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res3)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
+                                ?>
 
-                                    </td>
-                                    <td class="grade-4">row 3 [cell 2]</td>
-                                    <td class="grade-3">row 3 [cell 3]</td>
-                                    <td class="grade-2">row 3 [cell 4]</td>
-                                    <td class="grade-1">row 3 [cell 5]</td>
-                                    <td>
 
-                                        <input type="number" min="1" max="4" class="gradeinp3" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res4)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-
-                                    </td>
-                                    <td class="grade-4">row 4 [cell 2]</td>
-                                    <td class="grade-3">row 4 [cell 3]</td>
-                                    <td class="grade-2">row 4 [cell 4]</td>
-                                    <td class="grade-1">row 4 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp4" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res5)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-
-                                    </td>
-                                    <td class="grade-4">row 5 [cell 2]</td>
-                                    <td class="grade-3">row 5 [cell 3]</td>
-                                    <td class="grade-2">row 5 [cell 4]</td>
-                                    <td class="grade-1">row 5 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp5" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res6)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-
-                                    </td>
-                                    <td class="grade-4">row 6 [cell 2]</td>
-                                    <td class="grade-3">row 6 [cell 3]</td>
-                                    <td class="grade-2">row 6 [cell 4]</td>
-                                    <td class="grade-1">row 6 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp6" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res7)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-                                    </td>
-                                    <td class="grade-4">row 7 [cell 2]</td>
-                                    <td class="grade-3">row 7 [cell 3]</td>
-                                    <td class="grade-2">row 7 [cell 4]</td>
-                                    <td class="grade-1">row 7 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp7" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res8)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-                                    </td>
-                                    <td class="grade-4">row 8 [cell 2]</td>
-                                    <td class="grade-3">row 8 [cell 3]</td>
-                                    <td class="grade-2">row 8 [cell 4]</td>
-                                    <td class="grade-1">row 8 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp8" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res9)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-                                    </td>
-                                    <td class="grade-4">row 9 [cell 2]</td>
-                                    <td class="grade-3">row 9 [cell 3]</td>
-                                    <td class="grade-2">row 9 [cell 4]</td>
-                                    <td class="grade-1">row 9 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp9" />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <select name="select_catg" id="select_catg">
-                                            <option value="" disabled selected hidden>Παρακαλώ Eπιλέξτε</option>
-                                            <?php
-                                        while ($rows = mysqli_fetch_array($res10)) {
-                                            ?>
-                                            <option value="<?php echo $rows['id']; ?>">
-                                                <?php echo $rows['category']; ?>
-                                            </option>
-                                            <?php
-                                        }
-                                        ?>
-                                        </select>
-                                    </td>
-                                    <td class="grade-4">row 10 [cell 2]</td>
-                                    <td class="grade-3">row 10 [cell 3]</td>
-                                    <td class="grade-2">row 10 [cell 4]</td>
-                                    <td class="grade-1">row 10 [cell 5]</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp10" />
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="finalgrade">Τελική <br> Βαθμολογία</td>
-                                    <td>
-
-                                        <input type="number" min="1" max="4" class="gradeinp11"
-                                            id="telikiVathmologia" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
+
                         <div class="buttons">
+                            <br /><br />
+                            <br /><br />
                             <ul class="btn-list">
                                 <li>
 
@@ -452,7 +329,7 @@ include_once 'includes/dbh.inc.php';
                                 </li>
                                 <li>
 
-                                    <button class="editbtn" type="submit">
+                                    <button class="editbtn" id="editbtn" type="submit">
                                         Επεξεργασία
                                     </button>
 

@@ -55,6 +55,46 @@ function handleGet() {
                 die();
              }
     
+             $sql2="SELECT COUNT(*)*4 as countCriteria FROM criteria cr JOIN grading gr on cr.grading_id=gr.id WHERE gr.student_id=?"; //criteria count
+             $sql3="SELECT SUM(gr.teliki_vathmologia) as sumVathmologia from grading gr where gr.student_id=?"; //grade count
+
+             $sumTelikosVathmosResult = null;
+             $criteriaCountResult = null;
+             if($stmt=$conn->prepare($sql2)){ 
+
+                $stmt->bind_param("i" , $id); 
+                $stmt->execute();
+                $result = $stmt->get_result(); // get the mysqli result
+                $criteriaCountResult= $result->fetch_assoc(); // fetch data
+                
+
+             }
+            
+             
+             if($stmt=$conn->prepare($sql3)){ 
+
+              $stmt->bind_param("i" , $id); 
+              $stmt->execute();
+              $result = $stmt->get_result(); // get the mysqli result
+              $sumTelikosVathmosResult= $result->fetch_assoc(); // fetch data
+              
+              //var_dump($sumTelikosVathmos);
+
+           }
+
+
+
+           if ($criteriaCountResult == NULL || $sumTelikosVathmosResult == NULL || $criteriaCountResult['countCriteria'] == 0){
+              $user["mesosOros"] = "Δεν υπάρχουν καταχωρήσεις";
+
+           }else {
+
+               $sumTelikosVathmos  = (float)$sumTelikosVathmosResult['sumVathmologia'];
+               $criteriaCount  = (int)$criteriaCountResult['countCriteria'];
+
+               $user["mesosOros"] = number_format((($sumTelikosVathmos/$criteriaCount)*100),2);
+               
+            }
              echo json_encode($user);
              return;
         }

@@ -2,6 +2,11 @@
 session_start();
 include_once 'includes/dbh.inc.php';
 
+if (!isset($_SESSION["useruid"])) { 
+    http_response_code(403);
+    header("Location: ./index.php");
+    die();
+}
 
 ?>
 
@@ -49,10 +54,6 @@ include_once 'includes/dbh.inc.php';
             let studentName = data[0].text.trim().split("-")[0];
             let studentId = data[0].id;
 
-            $('#taksi option:selected').removeProp('selected');
-            $('#vathmida option:selected').removeProp('selected');
-
-
             $.ajax({
                     type: "GET",
                     url: `student.php?studentId=${studentId}`,
@@ -67,26 +68,33 @@ include_once 'includes/dbh.inc.php';
                             // This code will be executed if the server returns a 503 response
                         },
                         403: function(responseObject, textStatus, errorThrown) {
-                            // console.log("ltasi", textStatus)
-                            $.notify("Error", "danger");
+
+
                         }
                     }
                 })
                 .done(function(data) {
                     console.log("student", data);
 
-                    $("#studname").val(`${data.name}`);
-                    $("#studlastname").val(`${data.last_name}`);
+                    $("#studname").text(`${data.name}`);
+                    $("#studlastname").text(`${data.last_name}`);
+                    $("#am").text(data.am);
 
-                    $("#am").val(data.am);
+                    if (isNaN(data.mesosOros)) {
+                        $("#average").text(`${data.mesosOros}`);
+                    } else {
+                        $("#average").text(`${data.mesosOros}%`);
+                    }
+
+                    $.get(`aksiologiseis.php?studentId=${studentId}`, function(data, status) {
+
+
+                        $('#ans').html(data);
+                    });
 
                 })
 
-
         });
-
-
-
 
     })
     </script>
@@ -115,10 +123,6 @@ include_once 'includes/dbh.inc.php';
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
                 <div class="links">
-                    <img src="icons/icons8-conference-25 (1).png" />
-                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
-                </div>
-                <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
                 </div>
@@ -126,6 +130,7 @@ include_once 'includes/dbh.inc.php';
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
+
             </div>
 
             <div class="footer">
@@ -172,20 +177,22 @@ include_once 'includes/dbh.inc.php';
                             <br /><br />
                         </p>
                         <p>
+                            <br />
                             Στοιχεία Μαθητή
+                            <br />
 
                         <ul class="student-info">
-                            <li id="studname">Όνομα:</li>
-                            <li id="studlastname">Επώνυμο:</li>
-                            <li id="am">ΑΕΜ:</li>
+                            <li> <b>Όνομα: </b> <span id="studname"> </span> </li>
+                            <li><b>Επώνυμο: </b><span id="studlastname"> </span></li>
+                            <li><b>ΑΕΜ: </b><span id="am"> </li>
                             <br /><br />
 
                         </ul>
 
                     </div>
                     <div class="footercol1">
-                        <p class="mo-student">Μ.Ο Μαθήματος:</p>
 
+                        <p class="mo-student"><b>Μ.Ο Μαθήματος: </b> <span id="average"></span></p>
 
                     </div>
                 </div>
@@ -200,26 +207,6 @@ include_once 'includes/dbh.inc.php';
                     </div>
                     <div class="table">
 
-                        <?php 
-
-                                $category = "SELECT id,category FROM selections;";
-
-
-                                $res1 = mysqli_query($conn, $category);
-
-                                $res2 = mysqli_query($conn, $category);
-                                $res3 = mysqli_query($conn, $category);
-                                $res4 = mysqli_query($conn, $category);
-                                $res5 = mysqli_query($conn, $category);
-                                $res6 = mysqli_query($conn, $category);
-                                $res7 = mysqli_query($conn, $category);
-                                $res8 = mysqli_query($conn, $category);
-                                $res9 = mysqli_query($conn, $category);
-                                $res10 = mysqli_query($conn, $category);
-
-                            ?>
-
-
                         <table class="gradeinfotable">
                             <thead>
                                 <tr class="theader">
@@ -233,17 +220,7 @@ include_once 'includes/dbh.inc.php';
                                 </tr>
                             </thead>
                             <tbody id="ans" class="tbody">
-                                <tr>
-                                    <td> 2 </td>
 
-                                    <td> <a href="gradedpaper.php" class="gradedpaper">Τιτλος φυλλου
-                                            Αξιολόγησης</a>
-                                    </td>
-                                    <td> 12/16 </td>
-                                    <td> 22/1/22 </td>
-                                    <td> - </td>
-
-                                </tr>
                                 <tr>
                                     <td>
 
@@ -256,117 +233,7 @@ include_once 'includes/dbh.inc.php';
                                     <td class="grade-1"> </td>
 
                                 </tr>
-                                <tr>
-                                    <td>
 
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                    </td>
-                                    <td class="grade-4"></td>
-                                    <td class="grade-3"></td>
-                                    <td class="grade-2"></td>
-                                    <td class="grade-1"></td>
-
-                                </tr>
-                                <tr>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="finalgrade"> </td>
-
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td colspan="6">
-
-                                    </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
