@@ -123,6 +123,10 @@ if (!isset($_SESSION["useruid"])) {
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
                 <div class="links">
+                    <img src="icons/icons8-conference-25 (1).png" />
+                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
+                </div>
+                <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
                 </div>
@@ -130,6 +134,8 @@ if (!isset($_SESSION["useruid"])) {
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
+
+
 
             </div>
 
@@ -179,7 +185,7 @@ if (!isset($_SESSION["useruid"])) {
                         <p>
                             <br />
                             Στοιχεία Μαθητή
-                            <br />
+                            <br /><br />
 
                         <ul class="student-info">
                             <li> <b>Όνομα: </b> <span id="studname"> </span> </li>

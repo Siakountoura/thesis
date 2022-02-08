@@ -63,7 +63,7 @@
                                     echo "<p class='errormsg'>Δεν υπάρχει αντιστοιχία κωδικών!</p>";
                                 }
                                 else if ($_GET["error"] == "usernametaken") {
-                                    echo "<p class='errormsg'>Ο χρήστης υπάρχει ήδη!</p>";
+                                    echo "<p class='errormsg'>Το Όνομα Χρήστη υπάρχει ήδη!</p>";
                                 }
                                 else if ($_GET["error"] == "stmtfailed") {
                                     echo "<p class='errormsg'>Κάτι πήγε λάθος!</p>";

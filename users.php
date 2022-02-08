@@ -95,6 +95,7 @@ if (!isset($_SESSION["useruid"])) {
 
 <body>
     <main>
+
         <div class="dashboard">
             <div class="header">
                 <h4>TEACHERS DATABASE</h4>
@@ -109,6 +110,7 @@ if (!isset($_SESSION["useruid"])) {
             </div>
 
             <div class="nav">
+
                 <div class="links">
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
@@ -125,10 +127,7 @@ if (!isset($_SESSION["useruid"])) {
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-home-25 (1).png" />
-                    <a href="landingpage.php"> ΑΡΧΙΚΗ</a>
-                </div>
+
             </div>
 
             <div class="footer">
@@ -176,13 +175,13 @@ if (!isset($_SESSION["useruid"])) {
                             <br /><br />
 
                         <p>
-                            <br />
+                            <br>
                             Στοιχεία Καθηγητή
-                            <br />
+                            <br> <br>
                         <ul class="student-info">
-                            <li>Όνομα: <span id="teachersname"></li>
-                            <li>Επώνυμο: <span id="teachersLastname"></li>
-                            <li>Username: <span id="teachersUsername"></li>
+                            <li><b> Όνομα: </b> <span id="teachersname"></li>
+                            <li><b> Επώνυμο: </b> <span id="teachersLastname"></li>
+                            <li><b> Username: </b> <span id="teachersUsername"></li>
                         </ul>
                         </p>
 
@@ -190,7 +189,7 @@ if (!isset($_SESSION["useruid"])) {
 
                     </div>
                     <div class="footercol1">
-                        <p class="mo-vthmologisis">Μ.Ο Βαθμολόγισης:</p>
+                        <p class="mo-vthmologisis"> <b> Μ.Ο Βαθμολόγισης: </b></p>
 
 
                     </div>

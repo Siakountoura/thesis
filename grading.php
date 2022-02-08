@@ -71,8 +71,7 @@ if (!isset($_SESSION["useruid"])) {
                             // This code will be executed if the server returns a 503 response
                         },
                         403: function(responseObject, textStatus, errorThrown) {
-                            // console.log("ltasi", textStatus)
-                            //  $.notify("Error", "danger");
+
                         }
                     }
                 })
@@ -201,16 +200,19 @@ if (!isset($_SESSION["useruid"])) {
                 echo $_SESSION['useruid'];
             }
             ?>
-                    </strong>
-                </p>
+                    </strong></p>
             </div>
 
             <div class="nav">
+
                 <div class="links">
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
-
+                <div class="links">
+                    <img src="icons/icons8-conference-25 (1).png" />
+                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
+                </div>
                 <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>

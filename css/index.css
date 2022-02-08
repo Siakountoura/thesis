@@ -1,141 +1,219 @@
-* {
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Poppins', sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to bottom right, #efa2b4, #aef1ee);
-  color: #241102;
-  height: 100vh;
-  overflow: hidden;
+body{
+  overflow:hidden;
 }
 
-.center {
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #efa2b4, #aef1ee);
+}
+
+section .color{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 2rem;
-  border: rgba(255, 255, 255, 0.4) 1px solid;
-  backdrop-filter: blur(5px);
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+  filter: blur(150px);
 }
 
-.center h1 {
-  text-align: center;
-  font-weight: 400;
-  padding: 20px 0;
-  border-bottom: 1px solid silver;
+section .color:nth-child(1){
+  top: -350px;
+  width: 600px;
+  height: 600px;
+  background: #ff359aef;
 }
 
-.center form {
-  padding: 0 40px;
-  box-sizing: border-box;
+section .color:nth-child(2){
+  bottom: -150px;
+  left: 100px;
+  width: 500px;
+  height: 500px;
+  background: #fffd87ee;
 }
 
-form .txt_field {
+section .color:nth-child(3){
+  bottom: 50px;
+  right: 100px;
+  width: 300px;
+  height: 300px;
+  background: #00d0ffea;
+}
+
+.box{
   position: relative;
-  border-bottom: 2px solid #241102;
-  margin: 30px 0;
 }
 
-.txt_field input {
+.box .square{
+  position: absolute;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  animation: animate 12s linear infinite;
+  animation-delay: calc(-1s * var(--i));
+}
+
+@keyframes animate{
+  0%,100%{
+    transform: translateY(-40px);
+  }
+  50%{
+    transform: translateY(40px);
+  }
+}
+
+.box .square:nth-child(1){
+  top: -50px;
+  right: -60px;
+  width: 100px;
+  height: 100px;
+}
+
+.box .square:nth-child(2){
+  top: 150px;
+  left: -105px;
+  width: 120px;
+  height: 120px;
+  z-index: 2;
+}
+
+.box .square:nth-child(3){
+  bottom: 50px;
+  right: -60px;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+}
+
+.box .square:nth-child(4){
+  bottom: -80px;
+  left: 100px;
+  width: 50px;
+  height: 50px;
+}
+
+.box .square:nth-child(5){
+  top: -80px;
+  left: 140px;
+  width: 60px;
+  height: 60px;
+}
+
+.container{
+  position: relative;
+  width: 400px;
+  min-height: 400px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.form{
+  position: relative;
   width: 100%;
-  padding: 0 5px;
-  height: 40px;
-  font-size: 14px;
-  font-weight: 400;
-  border: none;
-  background: none !important;
-  outline: none;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: "color 9999s ease-out, background-color 9999s ease-out";
-  transition-delay: 9999s;
-  color: #241102;
+.form h2{
+  position: relative;
+  color: #f5f5f5d5;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
 }
 
-.txt_field label {
+.form h2::before{
+  content: '';
   position: absolute;
-  font-weight: 300;
-  top: 50%;
-  left: 5px;
-  color: #241102;
-  transform: translateY(-50%);
-  font-size: 16px;
-  pointer-events: none;
-  transition: 0.5s;
-}
-
-.txt_field span::before {
-  content: "";
-  position: absolute;
-  top: 40px;
   left: 0;
-  width: 0%;
-  height: 2px;
-  background: #ad7381;
-  transition: 0.5s;
+  bottom: -10px;
+  width: 80px;
+  height: 4px;
+  background: #f5f5f5d5;
 }
-.txt_field input:focus ~ label,
-.txt_field input:valid ~ label {
-  top: -5px;
-  color: #ad7381;
-}
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before {
+
+.form .inputBox{
   width: 100%;
+  margin-top: 20px;
 }
-input[type="submit"] {
+
+.form .inputBox input{
   width: 100%;
-  height: 40px;
-  border: 1px solid;
-  background: #241102;
-  border-radius: 25px;
-  font-weight: 400;
-  font-size: 16px;
-  color: #e9f4fb;
-  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  border: none;
   outline: none;
+  padding: 10px 20px;
+  border-radius: 35px;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-right: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #ca7d8f ;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05)
 }
 
-input[type="submit"]:hover {
-  background: #ad7381;
-  transition: 0.5s;
+.form .inputBox input::placeholder{
+  color: #ca7d8f ;
 }
 
-.signup_link {
-  margin: 30px 0;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  color: #635e5e;
-}
-
-.signup_link a {
-  color: #241102;
-  text-decoration: none;
-}
-
-.signup_link a:hover {
-  text-decoration: underline;
-  color: #ad7381;
+.form .inputBox input[type="submit"]{
+  background: #f5f5f5d5;
+  color: #c98897 ;
+  max-width: 150px;
   cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  margin-left: 47px;
 }
 
-p {
-  color: #ad7381;
+.forget{
+  margin-top: 5px;
+  margin-left: 89px;
+  color: #9b76a1;
+}
+
+.forget1 a{
+  padding-left: 88px;
+  color: #664a52f1;
+  font-weight: 600;
+}
+
+.forget2 a{
+  padding-left: 81px;
+  color: #664a52f1;
+  font-weight: 600;
+}
+
+.errormsg{
   text-align: center;
-  font-size: 14px;
-  font-weight: bold;
+  max-width: 180px;
+  margin-left: 35px;
+  margin-top:  15px;
 }

@@ -20,7 +20,7 @@
 }
 
 .paper-info{
-  font-weight: bold;
+  
   text-align: left;
 }
 
@@ -71,7 +71,7 @@
 
 .buttons{
   display: flex;
-  width: 100%;
+  width: 99%;
   justify-content: center;
 }
 
@@ -127,13 +127,13 @@
 }
 
 .gradeinfotable{
-  height: 75%;
+  height: 23%;
   width: 99%;
   padding-top: 30px;
 }
 
 .gradeinfotable td{
-  height: 35px;
+  height: 40px;
 }
 
 .headerid{
@@ -141,4 +141,89 @@
   padding-right: 20px;
 }
 
+.lastrow{
+  background-color: rgba(216, 191, 216, 0);
+}
 
+.lastTable{
+  display: flex;
+  width: 99%;
+  justify-content: center;
+}
+
+.allBtns{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.additionalBtns{
+  display: flex;
+  flex-direction: row;
+  width: 98.8%;
+  align-items: center;
+  justify-content: flex-end;
+  height: 58px;
+  background-color: #fafafa69 ;
+  margin: 1.97px;
+  margin-right: 14px;
+}
+
+#telikoText{
+  
+  align-items: center;
+  width: 16%;
+}
+
+#telikosVathmos{
+  padding-right: 1px;
+  align-items: center;
+  width: 83px;
+}
+
+.lastBtns{
+  display: flex;
+  flex-direction: row;
+  width: 98.8%;
+  align-items: center;
+  justify-content:flex-start;
+  height: 58px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#addrowBtn{
+  align-items: center;
+  width: 175px;
+  
+}
+
+#subOk{
+  align-items: center;
+  width: 220px;
+  
+}
+
+.table #addbtn{
+  font-weight: bold;
+  color: #780061;
+  font-size: 20px;
+  width: 50px;
+  margin-top: 3px;
+  height: 36px;
+  background: #ffffff;
+  border: solid #c98897 1px;
+  border-radius: 2rem;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(to left, transparent, #c98897a2 50%) right;
+ 
+}
+
+.table #gradesubmitbtn{
+  width: 180px !important;
+  font-weight: 400;
+  font-size: 13px; 
+  margin-top: 3px;
+  height: 36px;
+ }

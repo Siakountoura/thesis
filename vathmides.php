@@ -74,7 +74,10 @@ if (!isset($_SESSION["useruid"])) {
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
-
+                <div class="links">
+                    <img src="icons/icons8-conference-25 (1).png" />
+                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
+                </div>
                 <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
@@ -236,28 +239,67 @@ if (!isset($_SESSION["useruid"])) {
                             <br /><br />
 
                             <select id="vathmida">
-                                <option selected hidden>Επιλογή Βαθμίδας</option>
-                                <option value="Γυμνάσιο">Γυμνάσιο</option>
-                                <option value="Λύκειο">Λύκειο</option>
+
+                                <?php
+
+                                   echo($_GET['vathmida']);
+                                   
+                                    if ($_GET['vathmida'] === "Γυμνάσιο"){
+
+                                        echo "<option value='Γυμνάσιο' selected>Γυμνάσιο</option>";
+                                        echo "<option value='Λύκειο'>Λύκειο</option>";
+                                        
+                                        
+                                    
+                                    }else if ($_GET['vathmida'] === "Λύκειο"){                                    
+
+                                        echo "<option value='Γυμνάσιο' >Γυμνάσιο</option>";
+                                        echo "<option value='Λύκειο' selected> Λύκειο</option>";
+                                        
+
+                                    }else{
+
+                                        echo "<option selected>Not selected</option>";
+                                        echo "<option value='Γυμνάσιο' >Γυμνάσιο</option>";
+                                        echo "<option value='Λύκειο' >Λύκειο</option>";
+                                        
+                                    }
+
+                                ?>
+
                             </select>
 
                             <br /><br />
 
 
                             <select id="taksi">
-                                <option selected hidden>Επιλογή Τάξης</option>
-                                <option value="Α1">Α1</option>
-                                <option value="Α2">Α2</option>
-                                <option value="Α3">Α3</option>
-                                <option value="Α3">Α4</option>
-                                <option value="Β1">Β1</option>
-                                <option value="Β2">Β2</option>
-                                <option value="Β3">Β3</option>
-                                <option value="Β4">Β4</option>
-                                <option value="Γ1">Γ1</option>
-                                <option value="Γ2">Γ2</option>
-                                <option value="Γ3">Γ3</option>
-                                <option value="Γ4">Γ4</option>
+
+                                <?php
+
+                                            $takseis = array("Α1","Α2","Α3","Α4","Β1","Β2","Β3","Β4","Γ1","Γ2","Γ3","Γ4");
+
+                                            $optionExists = false;
+                                            foreach($takseis as $value){
+
+                                                if($_GET['taksi']===$value){
+
+                                                    $optionExists = true;
+                                                    echo "<option selected value='$value'>".$value."</option>";
+
+                                                }else{
+
+                                                    echo "<option value='$value'>".$value."</option>";
+                                                }
+                                            }
+                                            
+                                            if($optionExists === false){
+
+                                                echo "<option selected>Not selected</option>";
+
+                                            }
+
+                                ?>
+
                             </select>
 
                             <br /><br />

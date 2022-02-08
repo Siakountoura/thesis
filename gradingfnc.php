@@ -10,17 +10,17 @@ $request = explode("/", substr(@$_SERVER['PATH_INFO'], 1));
 
 switch ($method) {
   case 'PUT':
-
-    // do_something_with_put($request);
+    handlePut();
     break;
   case 'POST':
     handlePost();
     break;
   case 'GET':
+
     // do_something_with_get($request);
     break;
   case 'DELETE':
-      # code...
+      handleDelete();
       break;
   default:
       echo "default switch";
@@ -117,5 +117,87 @@ function handlePost()
 
 
 }
+
+    function handlePut(){
+     
+        global $conn;
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        
+        if(strcasecmp($contentType, 'application/json') != 0){
+            throw new Exception('Content type must be: application/json');
+        }
+
+        //Receive the RAW post data.
+        $content = trim(file_get_contents("php://input"));
+
+        //Attempt to decode the incoming RAW post data from JSON.
+        $decoded = json_decode($content, true);
+
+        //If json_decode failed, the JSON is invalid.
+        if(!is_array($decoded)){
+            throw new Exception('Received content contained invalid JSON!');
+        }
+
+
+        $grading = $decoded["grading"];
+
+      
+        $stmt = $conn->prepare("UPDATE grading g set g.teliki_vathmologia=?, g.modification_date=now() where g.id=?");
+        
+        $stmt->bind_param("ii", $telikiVathmologia, $gradingId);
+
+        $telikiVathmologia = $grading["telikiVathmologia"];
+        $gradingId = $grading['id'];
+
+        $stmt->execute();
+
+        $criterias = $decoded["criteria"];
+
+        
+
+        $stmt = $conn->prepare("UPDATE criteria cr set cr.criteria_title=?, cr.criteria1=? , cr.criteria2=?, cr.criteria3=?, cr.criteria4=?, cr.vathmos=? where cr.id=?");
+        $stmt2 = $conn->prepare("INSERT INTO criteria ( grading_id, criteria_title, criteria1 , criteria2, criteria3, criteria4, vathmos) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    
+
+        $stmt->bind_param("ssssssi", $criteriaTitle, $creteria1, $criteria2, $criteria3, $criteria4, $vathmos, $creteriaId);
+        $stmt2->bind_param("issssss", $gradingId, $criteriaTitle, $creteria1, $criteria2, $criteria3, $criteria4, $vathmos);
+
+        foreach($criterias as $criteria) {
+          
+            $creteriaId = $criteria["criteriaId"];
+            $criteriaTitle = $criteria["criteriaTitle"];
+            $creteria1 = $criteria["criteriaOne"];
+            $criteria2 = $criteria["criteriaTwo"];
+            $criteria3 = $criteria["criteriaThree"];
+            $criteria4 = $criteria["criteriaFour"];
+            $vathmos = $criteria["vathmos"];
+           
+            if ($creteriaId === NULL){
+                
+                $stmt2->execute();
+
+            }else{
+
+                $stmt->execute();
+
+            }
+
+        }
+
+        $stmt->close();
+
+    }
+
+     function handleDelete(){
+
+        global $conn;
+
+        $stmt = $conn->prepare("SELECT cr.id FROM criteria cr.grading_id=?");
+        $stmt->bind_param("i", $gradingId);
+
+        
+
+
+     }
 
 ?>
