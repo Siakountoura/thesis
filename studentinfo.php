@@ -135,8 +135,6 @@ if (!isset($_SESSION["useruid"])) {
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
 
-
-
             </div>
 
             <div class="footer">
@@ -161,6 +159,8 @@ if (!isset($_SESSION["useruid"])) {
 
                     <div class="contentcol2">
                         <p>
+                            <br>
+
                             Με όνομα ή ΑΕΜ:
 
                             <br /><br />
@@ -185,7 +185,7 @@ if (!isset($_SESSION["useruid"])) {
                         <p>
                             <br />
                             Στοιχεία Μαθητή
-                            <br /><br />
+                            <br />
 
                         <ul class="student-info">
                             <li> <b>Όνομα: </b> <span id="studname"> </span> </li>
@@ -215,14 +215,14 @@ if (!isset($_SESSION["useruid"])) {
 
                         <table class="gradeinfotable">
                             <thead>
-                                <tr class="theader">
+                                <tr class="theader" style="height: 53px;">
                                     <th>
                                         <p class="headerid">#ID</p>
                                     </th>
                                     <th>Τίτλος</th>
                                     <th>Βαθμολογία</th>
-                                    <th>Ημ/νία Δημ/γίας</th>
-                                    <th>Ημ/νία Επ/σίας</th>
+                                    <th>Ημ/νία <br> Δημιουργίας</th>
+                                    <th>Ημ/νία <br> Επεξεργασίας</th>
                                 </tr>
                             </thead>
                             <tbody id="ans" class="tbody">

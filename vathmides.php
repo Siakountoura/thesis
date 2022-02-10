@@ -74,6 +74,7 @@ if (!isset($_SESSION["useruid"])) {
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
+
                 <div class="links">
                     <img src="icons/icons8-conference-25 (1).png" />
                     <a href="users.php">ΧΡΗΣΤΕΣ</a>
@@ -86,6 +87,8 @@ if (!isset($_SESSION["useruid"])) {
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
+
+
 
             </div>
 
@@ -113,7 +116,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <h3> Στοιχεία Βαθμίδας <br> ή Τάξης </h3>
+                        <h3> Στοιχεία Βαθμίδας <br> ή <br> Τάξης </h3>
                     </div>
 
                     <div class="contentcol2">
@@ -157,7 +160,8 @@ if (!isset($_SESSION["useruid"])) {
 
                     </div>
                     <div class="footercol1">
-                        <p class="mo-vathmidas"><b>Μ.Ο Τμήματος/Βαθμίδας:</b></p>
+                        <br>
+                        <p class="mo-vathmidas"><b>Μ.Ο Βαθμίδας/Τμήματος:</b></p>
 
 
                     </div>
@@ -177,12 +181,12 @@ if (!isset($_SESSION["useruid"])) {
 
                         <table class="gradeinfotable">
                             <thead>
-                                <tr class="theader">
+                                <tr class="theader" style="height: 53px;">
                                     <th>
                                         <p class="headerid">#ID</p>
                                     </th>
                                     <th>Τίτλος</th>
-                                    <th>Καθηγητής</th>
+                                    <th>Βαθμολογητής</th>
                                     <th>ΑΕΜ Μαθητή</th>
 
                                     <th>Τάξη</th>
@@ -230,7 +234,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <h3> Στοιχεία Βαθμίδας <br> ή Τάξης </h3>
+                        <h3> Στοιχεία Βαθμίδας <br> ή <br> Τάξης </h3>
                     </div>
 
                     <div class="contentcol2">
@@ -266,6 +270,7 @@ if (!isset($_SESSION["useruid"])) {
                                     }
 
                                 ?>
+
 
                             </select>
 
@@ -313,24 +318,24 @@ if (!isset($_SESSION["useruid"])) {
 
                     </div>
                     <div class="footercol1">
-
+                        <br>
 
                         <?php
 
                                 $vathmida=$_GET['vathmida'];
                                 $taksi=$_GET["taksi"];
+                                $teacherId=$_SESSION['userid'];
 
+                                $sql2="SELECT COUNT(*)*4 as countCriteria FROM criteria cr JOIN grading gr on cr.grading_id=gr.id join students s on s.id = gr.student_id where s.vathmida=? and s.taksi=? and gr.teacher_id=?";
 
-                                $sql2="SELECT COUNT(*)*4 as countCriteria FROM criteria cr JOIN grading gr on cr.grading_id=gr.id join students s on s.id = gr.student_id where s.vathmida=? and s.taksi=?";
-
-                                $sql3="SELECT SUM(gr.teliki_vathmologia) as sumVathmologia from grading gr join students s on s.id = gr.student_id where s.vathmida=? and s.taksi=?";
+                                $sql3="SELECT SUM(gr.teliki_vathmologia) as sumVathmologia from grading gr join students s on s.id = gr.student_id where s.vathmida=? and s.taksi=? and gr.teacher_id=?";
 
                                 $sumTelikosVathmosResult = null;
                                 $criteriaCountResult = null;
 
                                 if($stmt=$conn->prepare($sql2)){ 
 
-                                    $stmt->bind_param("ss" , $vathmida,$taksi); 
+                                    $stmt->bind_param("ssi" , $vathmida,$taksi,$teacherId); 
                                     $stmt->execute();
                                     $result = $stmt->get_result(); // get the mysqli result
                                     $criteriaCountResult= $result->fetch_assoc(); // fetch data
@@ -339,7 +344,7 @@ if (!isset($_SESSION["useruid"])) {
 
                                 if($stmt=$conn->prepare($sql3)){ 
 
-                                    $stmt->bind_param("ss" , $vathmida,$taksi); 
+                                    $stmt->bind_param("ssi" , $vathmida,$taksi,$teacherId); 
                                     $stmt->execute();
                                     $result = $stmt->get_result(); // get the mysqli result
                                     $sumTelikosVathmosResult= $result->fetch_assoc(); // fetch data
@@ -350,7 +355,7 @@ if (!isset($_SESSION["useruid"])) {
 
                                if ($criteriaCountResult == NULL || $sumTelikosVathmosResult == NULL || $criteriaCountResult['countCriteria'] == 0){
                             
-                                echo "<p class='mo-vathmidas'>Μ.Ο Τμήματος/Βαθμίδας: Δεν υπάρχουν καταχωρήσεις</p>";
+                                echo "<p class='mo-vathmidas'><b>Μ.Ο Τμήματος/Βαθμίδας: </b>Δεν Υπάρχουν Καταχωρήσεις</p>";
                             
                             }else {
 
@@ -358,7 +363,7 @@ if (!isset($_SESSION["useruid"])) {
                                     $criteriaCount  = (int)$criteriaCountResult['countCriteria'];
 
                                     $mesosOros = ($sumTelikosVathmos/$criteriaCount)*100;
-                                    echo "<p class='mo-vathmidas'>Μ.Ο Τμήματος/Βαθμίδας: ".number_format($mesosOros,2)."%</p>";
+                                    echo "<p class='mo-vathmidas'><b>Μ.Ο Βαθμίδας/Τμήματος: </b>".number_format($mesosOros,2)."%</p>";
                             }
 
                         ?>
@@ -381,19 +386,19 @@ if (!isset($_SESSION["useruid"])) {
 
                         <table class="gradeinfotable">
                             <thead>
-                                <tr class="theader">
+                                <tr class="theader" style="height: 53px;">
                                     <th>
                                         <p class="headerid">#ID</p>
                                     </th>
                                     <th>Τίτλος</th>
-                                    <th>Καθηγητής</th>
-                                    <th>ΑΕΜ Μαθητή</th>
+                                    <th>Βαθμολογητής</th>
+                                    <th style="padding-left: 4px;padding-right: 4px;">ΑΕΜ Μαθητή</th>
 
-                                    <th>Τάξη</th>
-                                    <th>Βαθμίδα</th>
-                                    <th>Βαθμός</th>
-                                    <th>Ημ/νία Δημ/γίας</th>
-                                    <th>Ημ/νία Επ/σίας</th>
+                                    <th style="padding-left: 8px;padding-right: 8px;">Τάξη</th>
+                                    <th style="padding-left: 8px;padding-right: 8px;">Βαθμίδα</th>
+                                    <th style="padding-left: 8px;padding-right: 8px;">Βαθμός</th>
+                                    <th style="padding-left: 8px;padding-right: 8px;">Ημ/νία <br> Δημιουργίας</th>
+                                    <th style="padding-left: 8px;padding-right: 8px;">Ημ/νία <br> Επεξεργασίας</th>
 
                                 </tr>
                             </thead>
@@ -401,12 +406,12 @@ if (!isset($_SESSION["useruid"])) {
 
                                 <?php
 
-                                
-                                $sql="select g.id, g.titlos, g.teliki_vathmologia, g.creation_date, g.modification_date, u.usersName, s.am, s.vathmida, s.taksi from grading g join students s on g.student_id = s.id join users u on u.usersId = g.teacher_id where s.vathmida=? and s.taksi=?";
+                                $teacherId=$_SESSION['userid'];
+                                $sql="select g.id, g.titlos, g.teliki_vathmologia, g.creation_date, g.modification_date, u.usersName, s.am, s.vathmida, s.taksi from grading g join students s on g.student_id = s.id join users u on u.usersId = g.teacher_id where s.vathmida=? and s.taksi=? and g.teacher_id=?";
 
                                 if($stmt=$conn->prepare($sql)){ 
 
-                                    $stmt->bind_param("ss" , $vathmida,$taksi); 
+                                    $stmt->bind_param("ssi" , $vathmida,$taksi,$teacherId); 
                                     $stmt->execute();
                                     $result = $stmt->get_result(); // get the mysqli result
                                    

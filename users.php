@@ -36,9 +36,6 @@ if (!isset($_SESSION["useruid"])) {
 
 
 
-
-
-
     <script>
     $(document).ready(function() {
 
@@ -71,21 +68,22 @@ if (!isset($_SESSION["useruid"])) {
                         },
                         403: function(responseObject, textStatus, errorThrown) {
 
+                            $.notify("Error", "danger");
                         }
                     }
                 })
                 .done(function(data) {
                     console.log("student", data)
 
+
                     $("#teachersname").text(`${data.usersName}`)
                     $("#teachersLastname").text(`${data.last_name}`)
                     $("#teachersUsername").text("studentid", studentId)
 
+
                 })
 
-
         });
-
 
     })
     </script>
@@ -95,7 +93,6 @@ if (!isset($_SESSION["useruid"])) {
 
 <body>
     <main>
-
         <div class="dashboard">
             <div class="header">
                 <h4>TEACHERS DATABASE</h4>
@@ -110,7 +107,6 @@ if (!isset($_SESSION["useruid"])) {
             </div>
 
             <div class="nav">
-
                 <div class="links">
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
@@ -151,8 +147,9 @@ if (!isset($_SESSION["useruid"])) {
                     </div>
 
                     <div class="contentcol2">
-                        <p>
+                        <br>
 
+                        <p>
                             Με όνομα ή username:
 
                             <br /><br />
@@ -175,21 +172,18 @@ if (!isset($_SESSION["useruid"])) {
                             <br /><br />
 
                         <p>
-                            <br>
                             Στοιχεία Καθηγητή
-                            <br> <br>
                         <ul class="student-info">
-                            <li><b> Όνομα: </b> <span id="teachersname"></li>
-                            <li><b> Επώνυμο: </b> <span id="teachersLastname"></li>
-                            <li><b> Username: </b> <span id="teachersUsername"></li>
+                            <li><b>Όνομα:</b></li>
+                            <li><b>Επώνυμο:</b></li>
+                            <li><b>Username:</b></li>
                         </ul>
-                        </p>
+                        <br /><br />
 
-                        </p>
 
                     </div>
                     <div class="footercol1">
-                        <p class="mo-vthmologisis"> <b> Μ.Ο Βαθμολόγισης: </b></p>
+                        <p class="mo-vthmologisis"><b>Μ.Ο Βαθμολόγισης:</b></p>
 
 
                     </div>
@@ -205,24 +199,6 @@ if (!isset($_SESSION["useruid"])) {
                     </div>
                     <div class="table">
 
-                        <?php 
-
-                                $category = "SELECT id,category FROM selections;";
-
-
-                                $res1 = mysqli_query($conn, $category);
-
-                                $res2 = mysqli_query($conn, $category);
-                                $res3 = mysqli_query($conn, $category);
-                                $res4 = mysqli_query($conn, $category);
-                                $res5 = mysqli_query($conn, $category);
-                                $res6 = mysqli_query($conn, $category);
-                                $res7 = mysqli_query($conn, $category);
-                                $res8 = mysqli_query($conn, $category);
-                                $res9 = mysqli_query($conn, $category);
-                                $res10 = mysqli_query($conn, $category);
-
-                            ?>
 
 
                         <table class="gradeinfotable">
@@ -242,201 +218,14 @@ if (!isset($_SESSION["useruid"])) {
                                 </tr>
                             </thead>
                             <tbody id="ans" class="tbody">
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td>
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                    </td>
-                                    <td class="grade-4"> </td>
-                                    <td class="grade-3"> </td>
-                                    <td class="grade-2"> </td>
-                                    <td class="grade-1"> </td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-
-                                    </td>
-                                    <td class="grade-4"></td>
-                                    <td class="grade-3"></td>
-                                    <td class="grade-2"></td>
-                                    <td class="grade-1"></td>
-                                    <td>
-
-
-
-                                    </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
 
                                 <tr>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="hide"></td>
-                                    <td class="finalgrade"> </td>
-                                    <td>
-
-
-                                    </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
+                                    <td> </td>
                                     <td> </td>
                                     <td> </td>
                                     <td> </td>

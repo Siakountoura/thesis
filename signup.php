@@ -55,24 +55,24 @@
                         <p class="forget2" class="signup_link"><a href="index.php">Επιστροφή</a></p>
 
                         <?php
-                            if (isset($_GET["error"])){
-                                if ($_GET["error"] == "emptyinput") {
-                                    echo "<p class='errormsg'>Συμπλήρωσε όλα τα πεδία!</p>";
-                                }
-                                else if ($_GET["error"] == "passwordsdontmatch") {
-                                    echo "<p class='errormsg'>Δεν υπάρχει αντιστοιχία κωδικών!</p>";
-                                }
-                                else if ($_GET["error"] == "usernametaken") {
-                                    echo "<p class='errormsg'>Το Όνομα Χρήστη υπάρχει ήδη!</p>";
-                                }
-                                else if ($_GET["error"] == "stmtfailed") {
-                                    echo "<p class='errormsg'>Κάτι πήγε λάθος!</p>";
-                                }
-                                else if ($_GET["error"] == "none") {
-                                    echo "<p class='errormsg'> Επιτυχής εγγραφή! </p>";
-                                }
-                            }
-                        ?>
+            if (isset($_GET["error"])){
+                if ($_GET["error"] == "emptyinput") {
+                    echo "<p class='errormsg'>Συμπλήρωσε όλα τα πεδία!</p>";
+                }
+                else if ($_GET["error"] == "passwordsdontmatch") {
+                    echo "<p class='errormsg'>Δέν υπάρχει αντιστοιχία κωδικών!</p>";
+                }
+                else if ($_GET["error"] == "usernametaken") {
+                    echo "<p class='errormsg'>Το Όνομα Χρήστη υπάρχει ήδη!</p>";
+                }
+                else if ($_GET["error"] == "stmtfailed") {
+                    echo "<p class='errormsg'>Κάτι πήγε λάθος!</p>";
+                }
+                else if ($_GET["error"] == "none") {
+                    echo "<p class='errormsg'> Επιτυχής Εγγραφή! </p>";
+                }
+            }
+        ?>
 
                     </form>
                 </div>
