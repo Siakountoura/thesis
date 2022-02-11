@@ -1,9 +1,15 @@
 <?php
 
-$serverName = "localhost";
-$dBUsername = "root";
-$dBPassword = "";
-$dBName = "gradingsystem";
+// $serverName = "localhost";
+// $dBUsername = "root";
+// $dBPassword = "";
+// $dBName = "gradingsystem";
+
+//remote database connection
+$serverName = "remotemysql.com";
+$dBUsername = "PdHl2Qrttr";
+$dBPassword = "9QwqGpmcF7";
+$dBName = "PdHl2Qrttr";
 
 
 $conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
