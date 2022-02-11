@@ -192,12 +192,9 @@ function handlePost()
 
         global $conn;
 
-        $stmt = $conn->prepare("SELECT cr.id FROM criteria cr.grading_id=?");
-        $stmt->bind_param("i", $gradingId);
-
-        
-
-
+        $gradingId = $_REQUEST['id'];
+        $stmt2 = $conn->prepare("DELETE FROM grading where id=?");
+        $stmt2->bind_param("i", $gradingId);
+        $stmt2->execute();
      }
-
 ?>

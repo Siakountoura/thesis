@@ -39,12 +39,14 @@
                         <p class="forget1" class="signup_link"><a href="signup.php">Εγγραφή</a></p>
 
                         <?php
-                                if (isset($_GET["error"])){
-                                    if ($_GET["error"] == "wronglogin") {
-                                        echo "<p class='errormsg'>Τα στοιχεία που εισάγατε είναι λανθασμένα!</p>";
-                                    }
-                                }
-                            ?>
+            if (isset($_GET["error"])){
+              if ($_GET["error"] == "wronglogin") {
+                  echo "<p class='errormsg'>Τα στοιχεία που εισάγατε είναι λανθασμένα!</p>";
+              }
+            }
+          ?>
+
+
                     </form>
                 </div>
             </div>
