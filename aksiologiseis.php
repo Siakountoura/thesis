@@ -38,11 +38,13 @@ function handleGet() {
             die();
         }
     
-        $id=$_GET['studentId']; 
-        $sql="SELECT * FROM grading where student_id=?" ;
+        $id=$_GET['studentId'];
+        $teacherId=$_SESSION['userid'];
+
+        $sql="SELECT * FROM grading where student_id=? and teacher_id=?" ;
         
          if($stmt=$conn->prepare($sql)){ 
-             $stmt->bind_param("i" , $id); 
+             $stmt->bind_param("ii" , $id,$teacherId); 
              $stmt->execute();
              $result = $stmt->get_result(); // get the mysqli result
              
