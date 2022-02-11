@@ -167,15 +167,19 @@ if (!isset($_SESSION["useruid"])) {
                             // This code will be executed if the server returns a 503 response
                         },
                         403: function(responseObject, textStatus, errorThrown) {
-                            console.log("ltasi", textStatus)
+
                         }
                     }
                 })
 
                 .done(function(data) {
                     console.log("student", data)
+
                     $.notify(" Τα στοιχεία καταχωρήθηκαν επιτυχώς!", "success");
 
+                    setTimeout(function() {
+                        window.location.href = "grading.php";
+                    }, 2000);
 
                 })
 
@@ -200,19 +204,16 @@ if (!isset($_SESSION["useruid"])) {
                 echo $_SESSION['useruid'];
             }
             ?>
-                    </strong></p>
+                    </strong>
+                </p>
             </div>
 
             <div class="nav">
-
                 <div class="links">
                     <img src="icons/icons8-documents-25.png" />
                     <a href="grading.php">ΑΞΙΟΛΟΓΗΣΗ</a>
                 </div>
-                <div class="links">
-                    <img src="icons/icons8-conference-25 (1).png" />
-                    <a href="users.php">ΧΡΗΣΤΕΣ</a>
-                </div>
+
                 <div class="links">
                     <img src="icons/icons8-students-25.png" />
                     <a href="studentinfo.php">ΜΑΘΗΤΕΣ</a>
@@ -221,7 +222,6 @@ if (!isset($_SESSION["useruid"])) {
                     <img src="icons/icons8-building-25 (1).png" />
                     <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
                 </div>
-
             </div>
 
             <div class="footer">
@@ -241,10 +241,10 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <h3>Τι είναι οι Ρουμπρίκες Αξιολόγησης;</h3>
+                        <div class="headertitle">Τι είναι οι Ρουμπρίκες Αξιολόγησης;</div>
                     </div>
 
-                    <div class="contentcol2">
+                    <div class=" contentcol2">
                         <p>
 
 
@@ -269,7 +269,7 @@ if (!isset($_SESSION["useruid"])) {
                     <div class="tableinfo">
 
                         <div class="tableinfoheader">
-                            <h3>Δημιουργία Πίνακα Αξιολόγησης</h3>
+                            <h3><b>Δημιουργία Πίνακα Αξιολόγησης</b></h3>
                         </div>
 
 
