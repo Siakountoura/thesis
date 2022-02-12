@@ -175,7 +175,7 @@ if (!isset($_SESSION["useruid"])) {
                 .done(function(data) {
                     console.log("student", data)
 
-                    $.notify(" Τα στοιχεία καταχωρήθηκαν επιτυχώς!", "success");
+                    $.notify(" Τα Στοιχεία Καταχωρήθηκαν Επιτυχώς!", "success");
 
                     setTimeout(function() {
                         window.location.href = "grading.php";
