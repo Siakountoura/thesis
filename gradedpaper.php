@@ -166,7 +166,7 @@ if ($id===NULL){
                 .done(function(data) {
 
 
-                    $.notify(" Τα στοιχεία καταχωρήθηκαν επιτυχώς!", "success");
+                    $.notify(" Τα Στοιχεία Καταχωρήθηκαν Επιτυχώς!", "success");
 
                     setTimeout(function() {
                         window.location.reload()
