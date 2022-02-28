@@ -106,7 +106,7 @@ if (!isset($_SESSION["useruid"])) {
     <main>
         <div class="dashboard">
             <div class="header">
-                <h4>TEACHERS DATABASE</h4>
+                <h4>ΣΥΣΤΗΜΑ ΑΞΙΟΛΟΓΗΣΗΣ</h4>
                 <p>ΧΡΗΣΤΗΣ <strong>
                         <?php
             //$username = $_POST['usernametxt'];
