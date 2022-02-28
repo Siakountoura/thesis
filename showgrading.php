@@ -6,15 +6,16 @@
     $res = mysqli_query($con, $sql);
 
     while($rows = mysqli_fetch_array($res)){
-?>        
-        <tr>
-            <td> <?php echo $rows['grade4']; ?> </td>
-            <td> <?php echo $rows['grade3']; ?> </td>
-            <td> <?php echo $rows['grade2']; ?> </td>
-            <td> <?php echo $rows['grade1']; ?> </td>
-        </tr>
+?>
+<tr>
+    <td> <?php echo $rows['grade4']; ?> </td>
+    <td> <?php echo $rows['grade3']; ?> </td>
+    <td> <?php echo $rows['grade2']; ?> </td>
+    <td> <?php echo $rows['grade1']; ?> </td>
+</tr>
 <?php
 
     }
+    
     echo $sql;
 ?>
