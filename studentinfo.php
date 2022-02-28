@@ -205,7 +205,7 @@ if (!isset($_SESSION["useruid"])) {
                     <div class="table-info2">
 
                         <div class="tableinfoheader">
-                            <h3>Φύλλα Αξιολόγησης Μαθητή</h3>
+                            <h3>Αξιολογήσεις</h3>
                         </div>
                     </div>
                     <div class="table">
