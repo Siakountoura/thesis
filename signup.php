@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Σύστημα Αξιολόγησης | Φόρμα Εγγραφής</title>
+    <title>Σύστημα Αξιολόγησης | Εγγραφή</title>
     <link rel="stylesheet" <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&display=swap"
         rel="stylesheet" />

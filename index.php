@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Σύστημα Αξιολόγησης | Φόρμα Εισόδου</title>
+    <title>Σύστημα Αξιολόγησης | Είσοδος</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
