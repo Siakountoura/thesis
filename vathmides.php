@@ -231,7 +231,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <h3> Στοιχεία </br> Βαθμίδας </h3>
+                        <h3> Στοιχεία </br> Τμήματος </h3>
                     </div>
 
                     <div class="contentcol2">
