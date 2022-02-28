@@ -158,7 +158,7 @@ if (!isset($_SESSION["useruid"])) {
                     </div>
                     <div class="footercol1">
                         <br>
-                        <p class="mo-vathmidas"><b>Μ.Ο Βαθμίδας/Τμήματος:</b></p>
+                        <p class="mo-vathmidas"><b>Μ.Ο Τμήματος:</b></p>
 
 
                     </div>
