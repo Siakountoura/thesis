@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Teachers Database | Φόρμα Εισόδου</title>
+    <title>Σύστημα Αξιολόγησης | Φόρμα Εισόδου</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
