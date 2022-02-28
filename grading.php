@@ -196,7 +196,7 @@ if (!isset($_SESSION["useruid"])) {
 
         <div class="dashboard">
             <div class="header">
-                <h4>TEACHERS DATABASE</h4>
+                <h4>ΣΥΣΤΗΜΑ ΑΞΙΟΛΟΓΗΣΗΣ</h4>
                 <p>ΧΡΗΣΤΗΣ <strong>
                         <?php
             //$username = $_POST['usernametxt'];
@@ -241,7 +241,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <div class="headertitle">Τι είναι οι Ρουμπρίκες Αξιολόγησης;</div>
+                        <div class="headertitle">Τι Είναι οι Ρουμπρίκες Αξιολόγησης;</div>
                     </div>
 
                     <div class=" contentcol2">
