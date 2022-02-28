@@ -302,7 +302,7 @@ if ($id===NULL){
     <main>
         <div class="dashboard">
             <div class="header">
-                <h4>TEACHERS DATABASE</h4>
+                <h4>ΣΥΣΤΗΜΑ ΑΞΙΟΛΟΓΗΣΗΣ</h4>
                 <p>ΧΡΗΣΤΗΣ <strong>
                         <?php
             //$username = $_POST['usernametxt'];
@@ -403,7 +403,7 @@ if ($id===NULL){
                     <div class="table-info2">
 
                         <div class="tableinfoheader">
-                            <h3>Φύλλα Βαθμολόγισης Μαθητών</h3>
+                            <h3>Φύλλο Αξιολόγησης Μαθητή</h3>
                         </div>
                     </div>
                     <div class="table" id="table">
