@@ -35,7 +35,7 @@ if (!isset($_SESSION["useruid"])) {
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-    <title>Βαθμίδες</title>
+    <title>Τμήματα</title>
 
     <script>
     $(document).ready(function() {
@@ -82,7 +82,7 @@ if (!isset($_SESSION["useruid"])) {
                 </div>
                 <div class="links">
                     <img src="icons/icons8-building-25 (1).png" />
-                    <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
+                    <a href="vathmides.php">ΤΜΗΜΑΤΑ</a>
                 </div>
 
 
@@ -113,7 +113,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <h3> Στοιχεία Βαθμίδας <br> ή <br> Τάξης </h3>
+                        <h3> Στοιχεία </br> Τμήματος </h3>
                     </div>
 
                     <div class="contentcol2">
