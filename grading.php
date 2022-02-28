@@ -241,7 +241,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <div class="headertitle">Τι Είναι οι Ρουμπρίκες Αξιολόγησης;</div>
+                        <div class="headertitle">Τι Είναι οι Ρουμπρίκες Αξιολόγησης</div>
                     </div>
 
                     <div class=" contentcol2">
