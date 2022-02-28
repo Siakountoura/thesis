@@ -231,7 +231,7 @@ if (!isset($_SESSION["useruid"])) {
                 <div class="col1">
 
                     <div class="headercol1">
-                        <h3> Στοιχεία Βαθμίδας <br> ή <br> Τάξης </h3>
+                        <h3> Στοιχεία </br> Βαθμίδας </h3>
                     </div>
 
                     <div class="contentcol2">
@@ -352,7 +352,7 @@ if (!isset($_SESSION["useruid"])) {
 
                                if ($criteriaCountResult == NULL || $sumTelikosVathmosResult == NULL || $criteriaCountResult['countCriteria'] == 0){
                             
-                                echo "<p class='mo-vathmidas'><b>Μ.Ο Τμήματος/Βαθμίδας: </b>Δεν Υπάρχουν Καταχωρήσεις</p>";
+                                echo "<p class='mo-vathmidas'><b>Μ.Ο Τμήματος: </b>Δεν Υπάρχουν Καταχωρήσεις</p>";
                             
                             }else {
 
@@ -360,7 +360,7 @@ if (!isset($_SESSION["useruid"])) {
                                     $criteriaCount  = (int)$criteriaCountResult['countCriteria'];
 
                                     $mesosOros = ($sumTelikosVathmos/$criteriaCount)*100;
-                                    echo "<p class='mo-vathmidas'><b>Μ.Ο Βαθμίδας/Τμήματος: </b>".number_format($mesosOros,2)."%</p>";
+                                    echo "<p class='mo-vathmidas'><b>Μ.Ο Τμήματος: </b>".number_format($mesosOros,2)."%</p>";
                             }
 
                         ?>
