@@ -188,7 +188,7 @@ if (!isset($_SESSION["useruid"])) {
     })
     </script>
 
-    <title>Document</title>
+    <title>Δημιουργία Φύλλου Αξιολόγησης</title>
 </head>
 
 <body>
@@ -269,7 +269,7 @@ if (!isset($_SESSION["useruid"])) {
                     <div class="tableinfo">
 
                         <div class="tableinfoheader">
-                            <h3><b>Δημιουργία Πίνακα Αξιολόγησης</b></h3>
+                            <h3><b>Δημιουργία Φύλλου Αξιολόγησης</b></h3>
                         </div>
 
 
