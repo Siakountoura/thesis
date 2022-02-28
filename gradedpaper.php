@@ -325,7 +325,7 @@ if ($id===NULL){
                 </div>
                 <div class="links">
                     <img src="icons/icons8-building-25 (1).png" />
-                    <a href="vathmides.php">ΒΑΘΜΙΔΑ</a>
+                    <a href="vathmides.php">ΤΜΗΜΑΤΑ</a>
                 </div>
 
             </div>
