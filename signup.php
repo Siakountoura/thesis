@@ -5,6 +5,17 @@
 <head>
     <meta charset="utf-8">
     <title>Σύστημα Αξιολόγησης | Εγγραφή</title>
+
+    <script>
+    function myFunction() {
+        setTimeout(function() {
+
+            window.location.href = "index.php";
+
+        }, 3000);
+    }
+    </script>
+
     <link rel="stylesheet" <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&display=swap"
         rel="stylesheet" />
@@ -49,7 +60,7 @@
                         </div>
 
                         <div class="inputBox">
-                            <input type="submit" name="submit" value="Εγγραφή">
+                            <input onclick="myFunction()" type="submit" name="submit" value="Εγγραφή">
                         </div>
 
                         <p class="forget2" class="signup_link"><a href="index.php">Επιστροφή</a></p>
